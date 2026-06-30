@@ -6,6 +6,8 @@ export interface CardItem {
   imgUrl: string;
   alt?: string;
   linkUrl?: string;
+  title?: string;
+  text?: string;
 }
 
 interface SocialCardsProps {
@@ -59,53 +61,38 @@ function getSlotConfig(totalCards: number, slot: number) {
   };
 }
 
-const ARROW_CLASSES =
-  "relative flex items-center justify-center rounded-full border-[1.5px] border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-[16px] text-black/40 dark:text-white/55 cursor-pointer shrink-0 z-30 outline-none shadow-[0_4px_20px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:border-black/25 dark:hover:border-white/25 hover:text-black/70 dark:hover:text-white/80 active:opacity-70 transition-colors duration-300 before:content-[''] before:absolute before:inset-[3px] before:rounded-full before:border before:border-black/[0.04] dark:before:border-white/[0.04] before:pointer-events-none";
-
 export default function SocialCards({ cards }: SocialCardsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
   const hasEntered = useRef(false);
-  const directionRef = useRef<"left" | "right" | null>(null);
   const prevVisible = useRef<Set<number>>(new Set());
   const totalCards = cards.length;
-  const needsPagination = totalCards > MAX_VISIBLE;
-  const [centerIndex, setCenterIndex] = useState(needsPagination ? HALF : totalCards >> 1);
+  const [centerIndex] = useState(totalCards >> 1);
+  const [active, setActive] = useState<number | null>(null);
 
-  const getVisibleMap = useCallback((center: number) => {
+  const getVisibleMap = useCallback(() => {
     const map = new Map<number, number>();
-    if (!needsPagination) {
-      cards.forEach((_, i) => map.set(i, i));
-      return map;
-    }
-    for (let slot = 0; slot < MAX_VISIBLE; slot++) {
-      map.set(((center + slot - HALF) % totalCards + totalCards) % totalCards, slot);
-    }
+    cards.forEach((_, i) => map.set(i, i));
     return map;
-  }, [totalCards, needsPagination, cards]);
+  }, [cards]);
 
-  const cycle = useCallback((direction: "left" | "right") => {
-    if (isAnimating.current || !needsPagination) return;
-    isAnimating.current = true;
-    directionRef.current = direction;
-    setCenterIndex(prev =>
-      direction === "right" ? (prev + 1) % totalCards : (prev - 1 + totalCards) % totalCards
-    );
-  }, [totalCards, needsPagination]);
+  // Esc schließt die Lightbox
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setActive(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container || !totalCards) return;
     const cardElements = Array.from(container.querySelectorAll<HTMLElement>(".fan-card"));
     if (!cardElements.length) return;
-    const visibleMap = getVisibleMap(centerIndex);
-    const previouslyVisible = prevVisible.current;
-    const direction = directionRef.current;
+    const visibleMap = getVisibleMap();
     const isFirstMount = !hasEntered.current;
     const multiplier = getResponsiveMultiplier(window.innerWidth);
     const hMult = getHeightMultiplier(window.innerWidth);
-    const slotCount = needsPagination ? MAX_VISIBLE : totalCards;
-    const config = (slot: number) => getSlotConfig(slotCount, slot);
+    const config = (slot: number) => getSlotConfig(totalCards, slot);
     if (isFirstMount) isAnimating.current = true;
     let completedCount = 0;
     const visibleCount = visibleMap.size;
@@ -117,7 +104,6 @@ export default function SocialCards({ cards }: SocialCardsProps) {
     };
     cardElements.forEach((card, cardIndex) => {
       const slot = visibleMap.get(cardIndex);
-      const wasVisible = previouslyVisible.has(cardIndex);
       if (slot !== undefined) {
         const { x, y, rot, scale, zIndex } = config(slot);
         const target = {
@@ -131,18 +117,9 @@ export default function SocialCards({ cards }: SocialCardsProps) {
         if (isFirstMount) {
           gsap.set(card, { x: 0, y: `${12 * hMult}rem`, rotation: 0, scale: 0.5, opacity: 0 });
           gsap.to(card, { ...target, duration: 1.2, ease: "elastic.out(1.05,.78)", delay: 0.2 + slot * 0.06, onComplete: onCardDone });
-        } else if (!wasVisible) {
-          const enterX = direction === "right" ? 40 : -40;
-          gsap.set(card, { x: `${enterX}rem`, y: `${y * hMult}rem`, rotation: direction === "right" ? 30 : -30, scale: 0.5, opacity: 0 });
-          gsap.to(card, { ...target, duration: 0.6, ease: "power2.out", onComplete: onCardDone });
         } else {
           gsap.to(card, { ...target, duration: 0.5, ease: "power2.out", onComplete: onCardDone });
         }
-      } else if (wasVisible) {
-        const exitX = direction === "right" ? -40 : 40;
-        gsap.to(card, { x: `${exitX}rem`, opacity: 0, scale: 0.5, rotation: direction === "right" ? -30 : 30, duration: 0.4, ease: "power2.in", zIndex: 0 });
-      } else if (isFirstMount) {
-        gsap.set(card, { opacity: 0, scale: 0.3, x: 0, y: 0, zIndex: 0 });
       }
     });
     prevVisible.current = new Set(visibleMap.keys());
@@ -218,15 +195,9 @@ export default function SocialCards({ cards }: SocialCardsProps) {
       window.removeEventListener("resize", onResize);
       if (leaveTimer) clearTimeout(leaveTimer);
     };
-  }, [centerIndex, totalCards, getVisibleMap, needsPagination]);
+  }, [centerIndex, totalCards, getVisibleMap]);
 
   if (!totalCards) return null;
-
-  const chevron = (direction: "left" | "right") => (
-    <svg className="relative z-[2] w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points={direction === "left" ? "15 18 9 12 15 6" : "9 18 15 12 9 6"} />
-    </svg>
-  );
 
   return (
     <section className="flex flex-col items-center w-full py-4 lg:py-8 px-4 md:px-8 relative z-20">
@@ -241,24 +212,40 @@ export default function SocialCards({ cards }: SocialCardsProps) {
             return card.linkUrl ? (
               <a key={index} href={card.linkUrl} target={card.linkUrl.startsWith("http") ? "_blank" : "_self"} rel="noopener noreferrer" className="fan-card block cursor-pointer">{image}</a>
             ) : (
-              <div key={index} className="fan-card">{image}</div>
+              <div key={index} className="fan-card cursor-pointer" onClick={() => setActive(index)}>{image}</div>
             );
           })}
         </div>
       </div>
-      {needsPagination && (
-        <div className="flex items-center justify-center gap-4 mt-4 md:mt-6 z-30">
-          <button className={`${ARROW_CLASSES} w-10 h-10 md:w-12 md:h-12`} onClick={() => cycle("left")} aria-label="Previous">
-            {chevron("left")}
-          </button>
-          <div className="flex items-center gap-2">
-            {cards.map((_, i) => (
-              <span key={i} className={`w-2 h-2 rounded-full transition-all duration-300 ${i === centerIndex ? "bg-black/70 dark:bg-white/80 scale-[1.3]" : "bg-black/15 dark:bg-white/15"}`} />
-            ))}
+
+      {active !== null && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+          onClick={() => setActive(null)}
+        >
+          <div
+            className="relative w-full max-w-md bg-white rounded-2xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img src={cards[active].imgUrl} alt={cards[active].alt || ""} className="w-full h-72 object-cover" />
+            <button
+              onClick={() => setActive(null)}
+              aria-label="Schliessen"
+              className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/50 text-white text-xl leading-none flex items-center justify-center hover:bg-black/70 transition"
+            >
+              &times;
+            </button>
+            {(cards[active].title || cards[active].text) && (
+              <div className="p-5">
+                {cards[active].title && (
+                  <h3 className="text-lg font-bold text-[#1a1a2e] mb-1">{cards[active].title}</h3>
+                )}
+                {cards[active].text && (
+                  <p className="text-sm leading-relaxed text-[#555]">{cards[active].text}</p>
+                )}
+              </div>
+            )}
           </div>
-          <button className={`${ARROW_CLASSES} w-10 h-10 md:w-12 md:h-12`} onClick={() => cycle("right")} aria-label="Next">
-            {chevron("right")}
-          </button>
         </div>
       )}
     </section>

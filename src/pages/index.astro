@@ -4,12 +4,42 @@ import { Hero } from "@/components/ui/animated-hero";
 import SocialCards from "@/components/ui/card-fan-carousel";
 
 const catCards = [
-  { imgUrl: "https://katzenschutz-miez.de/katz_jung.jpg", alt: "Junge Katze" },
-  { imgUrl: "https://katzenschutz-miez.de/katz_3.jpg", alt: "Freigaenger-Katze" },
-  { imgUrl: "https://katzenschutz-miez.de/katz_hero.jpg", alt: "Weisse Katze" },
-  { imgUrl: "https://katzenschutz-miez.de/katz_luca.jpg", alt: "Luca mit Katze" },
-  { imgUrl: "https://katzenschutz-miez.de/katz_postop.jpg", alt: "Katze nach der OP" },
-  { imgUrl: "https://katzenschutz-miez.de/katz_parallax.jpg", alt: "Katze auf dem Sofa" },
+  {
+    imgUrl: "https://katzenschutz-miez.de/katz_jung.jpg",
+    alt: "Junge Katze",
+    title: "Junge Katze, Fremdkörper verschluckt",
+    text: "Kitten erkunden alles mit dem Maul. Eine Not-OP wegen verschlucktem Spielzeug ist einer der häufigsten Eingriffe bei jungen Katzen. OP-Kosten: ca. 1.500–2.500 €.",
+  },
+  {
+    imgUrl: "https://katzenschutz-miez.de/katz_3.jpg",
+    alt: "Freigänger-Katze",
+    title: "Freigänger nach Unfall",
+    text: "Autounfall, Bissverletzung, Sturz: Freigänger leben gefährlicher. Bei Unfällen gilt in der Krankenversicherung keine Wartezeit. Behandlung: ca. 2.000–4.000 €.",
+  },
+  {
+    imgUrl: "https://katzenschutz-miez.de/katz_hero.jpg",
+    alt: "Weiße Katze",
+    title: "Nie wieder Angst vor der Tierarztrechnung",
+    text: "Katzenkrankenversicherung mit persönlicher Beratung von Luca Ambos – von Katzenmensch zu Katzenmensch, statt anonymer Hotline.",
+  },
+  {
+    imgUrl: "https://katzenschutz-miez.de/katz_luca.jpg",
+    alt: "Luca mit Katze",
+    title: "Dein persönlicher Ansprechpartner",
+    text: "Hi, ich bin Luca aus Berlin. Keine Hotline, kein Callcenter – du sprichst direkt mit mir, vor und nach dem Abschluss.",
+  },
+  {
+    imgUrl: "https://katzenschutz-miez.de/katz_postop.jpg",
+    alt: "Katze nach der OP",
+    title: "Nachsorge nach der OP",
+    text: "Mit der OP ist es selten getan: Nachbehandlungen, Medikamente und Kontrollen sind bis 30 Tage nach der OP mitversichert. Nachsorge: oft mehrere hundert €.",
+  },
+  {
+    imgUrl: "https://katzenschutz-miez.de/katz_parallax.jpg",
+    alt: "Katze auf dem Sofa",
+    title: "EisbaumTabelle Testsieger 2026",
+    text: "Die Barmenia Premium Plus steht mit 98 % Ø-Erstattung auf Platz 1 – unbegrenzte Leistungssumme, Erstattung bis zum 4-fachen Satz der Tierarzt-Gebührenordnung (GOT).",
+  },
 ];
 ---
 
@@ -28,6 +58,7 @@ const catCards = [
         <div class="max-w-4xl mx-auto text-center mb-4">
           <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7c3aed] mb-2">Aus der Praxis</p>
           <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a1a2e]">Echte Fellnasen, echt abgesichert</h2>
+          <p class="text-sm text-[#777] mt-3">Klick auf eine Karte für die ganze Geschichte.</p>
         </div>
         <SocialCards client:load cards={catCards} />
       </section>
