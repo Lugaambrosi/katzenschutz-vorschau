@@ -11,30 +11,32 @@ interface Scenario {
 interface Tarif {
   key: string;
   name: string;
-  rate: number; // Erstattungssatz 0..1
-  beitrag: number; // € / Monat
+  beitrag: number; // Einstiegsbeitrag junge Katze, € / Monat
   highlight?: boolean;
 }
 
-// OP-Kosten = realistische Beispielwerte (Spannen aus der Praxis, Mittelwert)
+// Reine OP-/Ernstfall-Szenarien. OP-Kosten = realistische Beispielwerte aus der Praxis.
+// Operationen sind in allen Barmenia-Tarifen ohne Jahreshöchstgrenze zu 100 % mitversichert.
 const SCENARIOS: Scenario[] = [
-  { name: "Verschluckter Fremdkörper", emoji: "🧶", cost: 2000, note: "Not-OP – einer der häufigsten Eingriffe bei jungen Katzen." },
-  { name: "Unfall als Freigänger", emoji: "🚗", cost: 3000, note: "Auto, Sturz, Bissverletzung – bei Unfällen gilt keine Wartezeit." },
-  { name: "Kreuzbandriss-OP", emoji: "🦴", cost: 1800, note: "Orthopädischer Eingriff inkl. Nachsorge und Kontrollen." },
-  { name: "Chronische Niere (1 Jahr)", emoji: "💧", cost: 1500, note: "Dauerbehandlung mit Medikamenten und regelmäßigen Kontrollen." },
+  { name: "Verschluckter Fremdkörper", emoji: "🧶", cost: 2000, note: "Not-OP – bei Unfällen wie Verschlucken gilt keine Wartezeit." },
+  { name: "Unfall als Freigänger", emoji: "🚗", cost: 3000, note: "Auto, Sturz, Bissverletzung – Unfall-OP ohne Wartezeit." },
+  { name: "Kreuzband- / Patella-OP", emoji: "🦴", cost: 1800, note: "Orthopädischer Eingriff inkl. Untersuchung und Nachsorge." },
+  { name: "Harnstein- / Blasen-OP", emoji: "🐾", cost: 1500, note: "Harnröhrenverschluss beim Kater – akuter Notfall, OP nötig." },
   { name: "Tumor-OP + Nachsorge", emoji: "🎗️", cost: 2500, note: "Operation, Gewebeuntersuchung und Nachbehandlung." },
 ];
 
-// Premium Plus: 98 % sind die belegte Barmenia-Angabe.
-// Basis / Komfort: Beispiel-Erstattungssätze · alle Beiträge sind Platzhalter.
+// Echte Einstiegsbeiträge (junge Katze, 2–11 Monate), Stand 01/2026.
 const TARIFE: Tarif[] = [
-  { key: "basis", name: "Basis", rate: 0.7, beitrag: 18 },
-  { key: "komfort", name: "Komfort", rate: 0.85, beitrag: 28 },
-  { key: "premium", name: "Premium Plus", rate: 0.98, beitrag: 42, highlight: true },
+  { key: "basis", name: "Basis", beitrag: 22.74 },
+  { key: "top", name: "Top", beitrag: 40.54 },
+  { key: "premium", name: "Premium", beitrag: 61.42 },
+  { key: "premiumplus", name: "Premium Plus", beitrag: 71.91, highlight: true },
 ];
 
-const euro = (n: number) =>
-  new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
+const euro0 = (n: number) =>
+  new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(Math.round(n));
+const euro2 = (n: number) =>
+  new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", minimumFractionDigits: 2 }).format(n);
 
 function useCountUp(target: number, duration = 650) {
   const [val, setVal] = useState(target);
@@ -59,17 +61,12 @@ function useCountUp(target: number, duration = 650) {
 
 export default function CostCalculator() {
   const [sIdx, setSIdx] = useState(1); // Start: Unfall
-  const [tKey, setTKey] = useState("premium");
+  const [tKey, setTKey] = useState("premiumplus");
 
   const scenario = SCENARIOS[sIdx];
-  const tarif = TARIFE.find((t) => t.key === tKey) ?? TARIFE[2];
-
-  const erstattet = Math.round(scenario.cost * tarif.rate);
-  const eigenanteil = scenario.cost - erstattet;
+  const tarif = TARIFE.find((t) => t.key === tKey) ?? TARIFE[3];
 
   const cCost = useCountUp(scenario.cost);
-  const cErstattet = useCountUp(erstattet);
-  const cEigen = useCountUp(eigenanteil);
 
   return (
     <section className="bg-white py-16 md:py-24 px-4">
@@ -77,7 +74,7 @@ export default function CostCalculator() {
         <div className="text-center mb-10">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#7c3aed] mb-2">Zum Mitrechnen</p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a1a2e]">Was kostet der Ernstfall?</h2>
-          <p className="text-[#666] mt-3">Schieb durch echte Szenarien und sieh, was du mit und ohne Versicherung zahlst.</p>
+          <p className="text-[#666] mt-3">Schieb durch echte OP-Fälle und sieh, was du mit und ohne Versicherung zahlst.</p>
         </div>
 
         {/* Szenario-Regler */}
@@ -119,10 +116,10 @@ export default function CostCalculator() {
           </div>
         </div>
 
-        {/* Tarif-Umschalter */}
+        {/* Tarif-Umschalter (zeigt den Monatsbeitrag) */}
         <div className="mb-8">
           <div className="text-sm font-semibold text-[#555] mb-2">Tarif</div>
-          <div className="grid grid-cols-3 gap-2 p-1 bg-[#f3f1fb] rounded-xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-1 bg-[#f3f1fb] rounded-xl">
             {TARIFE.map((t) => (
               <button
                 key={t.key}
@@ -133,7 +130,7 @@ export default function CostCalculator() {
               >
                 {t.name}
                 <span className={`block text-[11px] font-medium mt-0.5 ${t.key === tKey ? "text-white/80" : "text-[#999]"}`}>
-                  {Math.round(t.rate * 100)} % Erstattung
+                  ab {euro2(t.beitrag)}
                 </span>
               </button>
             ))}
@@ -144,52 +141,44 @@ export default function CostCalculator() {
         <div className="rounded-2xl border border-[#eee] shadow-sm p-6 md:p-8">
           <div className="flex items-baseline justify-between mb-4">
             <span className="text-sm font-semibold text-[#666]">Tierarztrechnung</span>
-            <span className="text-2xl font-extrabold text-[#1a1a2e] tabular-nums">{euro(cCost)}</span>
+            <span className="text-2xl font-extrabold text-[#1a1a2e] tabular-nums">{euro0(cCost)}</span>
           </div>
 
-          {/* Aufschlüsselungs-Balken */}
-          <div className="flex h-7 w-full overflow-hidden rounded-full bg-[#fde8e8] mb-2">
-            <div
-              className="flex items-center justify-end bg-[#16a34a] transition-all duration-700 ease-out"
-              style={{ width: `${tarif.rate * 100}%` }}
-            >
+          {/* 100 %-Balken */}
+          <div className="flex h-7 w-full overflow-hidden rounded-full bg-[#e9f7ee] mb-2">
+            <div className="flex items-center justify-center w-full bg-[#16a34a]">
               <span className="text-[11px] font-bold text-white px-2 whitespace-nowrap">
-                {Math.round(tarif.rate * 100)} %
+                100 % erstattet
               </span>
             </div>
           </div>
-          <div className="flex justify-between text-xs font-medium text-[#888] mb-6">
-            <span className="text-[#16a34a]">Barmenia erstattet</span>
-            <span className="text-[#c0392b]">dein Anteil</span>
+          <div className="text-center text-xs font-medium text-[#888] mb-6">
+            OP-Kosten ohne Jahreshöchstgrenze – in jedem Tarif
           </div>
 
           {/* Kontrast */}
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-xl bg-[#fdeeee] p-4 text-center">
               <div className="text-xs font-semibold text-[#c0392b] mb-1">Ohne Versicherung</div>
-              <div className="text-2xl md:text-3xl font-extrabold text-[#c0392b] tabular-nums">{euro(cCost)}</div>
+              <div className="text-2xl md:text-3xl font-extrabold text-[#c0392b] tabular-nums">{euro0(cCost)}</div>
             </div>
             <div className="rounded-xl bg-[#e9f7ee] p-4 text-center">
-              <div className="text-xs font-semibold text-[#16a34a] mb-1">Mit Barmenia zahlst du nur</div>
-              <div className="text-2xl md:text-3xl font-extrabold text-[#16a34a] tabular-nums">{euro(cEigen)}</div>
+              <div className="text-xs font-semibold text-[#16a34a] mb-1">Mit Barmenia zahlst du</div>
+              <div className="text-2xl md:text-3xl font-extrabold text-[#16a34a] tabular-nums">0 €</div>
             </div>
           </div>
 
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-sm text-[#555]">
-            <span>
-              Barmenia übernimmt <strong className="text-[#16a34a] tabular-nums">{euro(cErstattet)}</strong>
-            </span>
-            <span className="text-[#ccc]">·</span>
-            <span>
-              Beitrag <strong className="text-[#1a1a2e]">{euro(tarif.beitrag)}</strong>/Monat
-            </span>
+          <div className="mt-5 text-center text-sm text-[#555]">
+            Voller Schutz schon ab <strong className="text-[#1a1a2e]">{euro2(tarif.beitrag)}</strong>/Monat
+            <span className="text-[#999]"> ({tarif.name})</span>
           </div>
         </div>
 
         <p className="text-[11px] leading-relaxed text-[#aaa] mt-4 text-center">
-          Beispielrechnung. OP-Kosten sind realistische Durchschnittswerte aus der Praxis. 98 % Erstattung gilt für die
-          Barmenia Premium Plus; Erstattungssätze der Tarife Basis/Komfort und alle Monatsbeiträge sind Platzhalter und
-          werden durch echte Tarifwerte ersetzt.
+          Beispielrechnung. OP-Kosten sind realistische Durchschnittswerte aus der Praxis. Barmenia erstattet 100 % der
+          erstattungsfähigen Kosten bis zum 3-fachen GOT-Satz (4-fach im tierärztlichen Notdienst); Operationen ohne
+          Jahreshöchstgrenze. Beiträge = Einstiegsbeitrag für junge Katzen (2–11 Monate), altersabhängig, Stand 01/2026.
+          Optional ist eine Selbstbeteiligung von 20 % (max. 250 € je Einreichung) gegen geringeren Beitrag wählbar.
         </p>
       </div>
     </section>
