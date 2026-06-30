@@ -4,6 +4,13 @@ import { Hero } from "@/components/ui/animated-hero";
 import SocialCards from "@/components/ui/card-fan-carousel";
 import CostCalculator from "@/components/ui/cost-calculator";
 
+const base = import.meta.env.BASE_URL;
+const dankeUrl = `${import.meta.env.SITE}${base}danke.html`;
+const barmeniaKV =
+  "https://ssl.barmenia.de/online-versichern/#/tierversicherung/Beitrag?tierart=Katze&versicherung=kv&adm=00011802";
+const barmeniaOP =
+  "https://ssl.barmenia.de/online-versichern/#/tierversicherung/Beitrag?tierart=Katze&versicherung=op&adm=00011802";
+
 const catCards = [
   {
     imgUrl: "https://katzenschutz-miez.de/katz_jung.jpg",
@@ -49,22 +56,1458 @@ const catCards = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Katzenschutz - Vorschau</title>
+    <title>KatzenSchutz Miez – Katzenkrankenversicherung mit Luca Ambos</title>
+    <meta
+      name="description"
+      content="Katzenkrankenversicherung und Katzen-OP-Schutz der BarmeniaGothaer ab 14,84 €/Monat. Persönliche Beratung durch Luca Ambos, Berlin. EisbaumTabelle Testsieger 2026."
+    />
   </head>
   <body>
-    <main>
-      <Hero client:load />
+    <!-- NAV -->
+    <nav>
+      <a class="nav-brand" href="#hero">KatzenSchutz Miez</a>
+      <div class="nav-links">
+        <a href="#kosten">Tierarztkosten</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#vergleich">Tarife</a>
+        <a href="#ueber">Über mich</a>
+        <a href="#reviews">Bewertungen</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a class="btn-nav" href="#kontakt">Kostenlose Beratung</a>
+    </nav>
 
-      <section class="bg-[#f8f7fc] py-16 md:py-24 px-4">
-        <div class="max-w-4xl mx-auto text-center mb-4">
-          <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7c3aed] mb-2">Aus der Praxis</p>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a1a2e]">Echte Fellnasen, echt abgesichert</h2>
-          <p class="text-sm text-[#777] mt-3">Klick auf eine Karte für die ganze Geschichte.</p>
+    <main>
+      <div id="hero">
+        <Hero client:load />
+      </div>
+
+      <!-- TESTSIEGER-BAND (EisbaumTabelle, prominent) -->
+      <section id="testsieger" class="testsieger">
+        <div class="container">
+          <div class="ts-grid">
+            <div class="ts-main">
+              <div class="ts-trophy">🏆</div>
+              <div>
+                <div class="ts-kicker">EisbaumTabelle 2026 · Platz 1</div>
+                <h2 class="ts-h">Testsieger Katzenkrankenversicherung</h2>
+                <p class="ts-sub">
+                  Die <strong>Barmenia Premium Plus</strong> steht bei der unabhängigen
+                  EisbaumTabelle 2026 mit <strong>98 % Ø-Erstattung</strong> auf Platz 1 –
+                  und genau diesen Tarif empfehle ich dir.
+                </p>
+                <a
+                  class="ts-link"
+                  href="https://www.eisbaumtabelle.de/katze"
+                  target="_blank"
+                  rel="noopener">Testsieger ansehen →</a
+                >
+              </div>
+            </div>
+            <div class="ts-side">
+              <div class="ts-item">
+                <span class="ts-stars">★★★★★</span>
+                <div>
+                  <div class="ts-big">5,0 bei Google</div>
+                  <a
+                    href="https://g.page/r/CZ_BYAxxpUq7EBM/review"
+                    target="_blank"
+                    rel="noopener">Bewertung schreiben</a
+                  >
+                </div>
+              </div>
+              <div class="ts-item">
+                <span class="ts-emoji">🐾</span>
+                <div>
+                  <div class="ts-big">Selbst Katzenmensch</div>
+                  <span class="ts-muted">Beratung von Halter zu Halter</span>
+                </div>
+              </div>
+              <div class="ts-item ts-logo">
+                <img
+                  src="https://cdn.barmeniagothaer.de/barmeniagothaer/media/barmeniagothaer_logo_white-original_webp.webp"
+                  alt="BarmeniaGothaer Logo"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WARUM JETZT / TIERARZTKOSTEN -->
+      <section id="kosten">
+        <div class="container">
+          <div class="section-label">Warum jetzt?</div>
+          <h2>Tierarztkosten steigen – dein Risiko auch</h2>
+          <p class="section-sub">
+            Seit der neuen Gebührenordnung für Tierärzte (GOT) rechnen Praxen bis zum
+            4-fachen Satz ab – im Notdienst sogar verpflichtend erhöht. Eine einzige
+            Behandlung kann vierstellig werden.
+          </p>
+          <div class="cards-3">
+            <div class="card">
+              <h3>Standard-Schutz reicht oft nicht</h3>
+              <p>
+                Viele Tarife erstatten nur 60–80 % oder deckeln die Jahresleistung. Der
+                Rest bleibt an dir hängen – ausgerechnet im Ernstfall.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Zähne &amp; Rasse-Erkrankungen</h3>
+              <p>
+                FORL, Wurzelbehandlungen oder rassetypische Erkrankungen schließen viele
+                Versicherer aus. In meinem empfohlenen Tarif sind sie mitversichert.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Früh abschließen lohnt sich</h3>
+              <p>
+                Je jünger und gesünder deine Katze beim Abschluss ist, desto günstiger der
+                Beitrag – und Vorerkrankungen sind noch kein Thema.
+              </p>
+            </div>
+          </div>
+          <div class="kosten-tabelle">
+            <h3>Typische Behandlungskosten bei Katzen</h3>
+            <div class="kosten-row">
+              <span class="kr-name">Not-OP nach verschlucktem Fremdkörper</span><span
+                class="kr-preis">1.500 – 2.500 €</span
+              >
+            </div>
+            <div class="kosten-row">
+              <span class="kr-name">Behandlung nach Autounfall (Freigänger)</span><span
+                class="kr-preis">2.000 – 4.000 €</span
+              >
+            </div>
+            <div class="kosten-row">
+              <span class="kr-name">Zahnsanierung / FORL unter Vollnarkose</span><span
+                class="kr-preis">800 – 1.500 €</span
+              >
+            </div>
+            <div class="kosten-row">
+              <span class="kr-name">Tumor-OP inkl. Diagnostik (MRT/CT)</span><span
+                class="kr-preis">1.500 – 3.500 €</span
+              >
+            </div>
+            <div class="kosten-row">
+              <span class="kr-name">Nachsorge: Medikamente, Kontrollen, Klinik</span><span
+                class="kr-preis">oft mehrere hundert €</span
+              >
+            </div>
+            <p class="kosten-fussnote">
+              Richtwerte je nach Praxis, Region und Gebührensatz (1- bis 4-fach nach GOT).
+              Vor- und Nachbehandlungen kommen häufig hinzu.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEISTUNGEN -->
+      <section id="leistungen">
+        <div class="container">
+          <div class="section-label">Das steckt drin</div>
+          <h2>Starke Leistungen für deine Katze</h2>
+          <p class="section-sub">
+            Die Barmenia Premium Plus steht bei der <a
+              href="https://www.eisbaumtabelle.de/katze"
+              target="_blank"
+              rel="noopener">EisbaumTabelle 2026</a
+            > mit 98 % Ø-Erstattung auf Platz 1 – und das bekommst du dazu.
+          </p>
+          <div class="leistungen-grid">
+            <div class="leistung-block">
+              <h3>Versicherte Leistungen</h3>
+              <ul>
+                <li>
+                  <strong>Unbegrenzte Leistungssumme</strong> – keine Jahres-Deckelung bei OPs
+                </li>
+                <li>
+                  Erstattung bis zum <strong
+                    >4-fachen Satz der Tierarzt-Gebührenordnung (GOT)</strong
+                  >
+                </li>
+                <li>
+                  <strong>Zahnerkrankungen</strong> inkl. FORL, Extraktionen &amp; Wurzelbehandlungen
+                </li>
+                <li><strong>Rassespezifische Erkrankungen</strong> – auch mehrfach</li>
+                <li>Diagnostik wie <strong>MRT, CT, Röntgen</strong> vor der OP</li>
+                <li><strong>Nachbehandlungen bis 30 Tage</strong> nach der OP</li>
+                <li>Keine Wartezeit bei <strong>Unfällen &amp; Vergiftungen</strong></li>
+              </ul>
+            </div>
+            <div class="leistung-block hell">
+              <h3>Dein Plus bei mir</h3>
+              <ul>
+                <li>
+                  <strong>Persönlicher Ansprechpartner</strong> – vor und nach dem Abschluss
+                </li>
+                <li>
+                  <strong>Freie Tierarzt- und Klinikwahl</strong> in ganz Deutschland
+                </li>
+                <li>
+                  <strong>Weltweiter Schutz</strong> bei Auslandsaufenthalten bis 12 Monate
+                </li>
+                <li>
+                  Ehrliche Einschätzung: <strong>KV oder OP-Schutz</strong> – was wirklich passt
+                </li>
+                <li>Hilfe bei <strong>Erstattungen &amp; Rechnungen</strong> im Leistungsfall</li>
+                <li>Erreichbar per <strong>WhatsApp, Telefon oder E-Mail</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- KOSTENRECHNER (interaktiv) -->
+      <CostCalculator client:load />
+
+      <!-- VERGLEICH -->
+      <section id="vergleich">
+        <div class="container">
+          <div class="section-label">KV oder OP-Schutz?</div>
+          <h2>Welcher Schutz passt zu deiner Katze?</h2>
+          <p class="section-sub">
+            Beide Varianten bieten echten Schutz – die richtige Wahl hängt von deiner
+            Katze, deinem Budget und deinem Sicherheitsbedürfnis ab.
+          </p>
+          <div class="vergleich-grid">
+            <div class="plan empfohlen">
+              <div class="plan-tag">Empfohlen · Premium-Plus-Tarif</div>
+              <h3>Katzenkrankenversicherung</h3>
+              <div class="preis-sub">Schon ab</div>
+              <div class="preis">14,84 € <span>/Monat</span></div>
+              <div class="preis-sub">inkl. 20 % Selbstbeteiligung (max. 250 €)</div>
+              <ul>
+                <li>Unbegrenzte Leistungssumme</li>
+                <li>Bis zum 4-fachen Tierarzt-Gebührensatz (GOT)</li>
+                <li>Keine Wartezeit bei Unfällen</li>
+                <li>Zahnextraktionen &amp; Wurzelbehandlungen</li>
+                <li>Nachbehandlungen bis 30 Tage nach OP</li>
+              </ul>
+              <a class="btn-primary" href={barmeniaKV} target="_blank" rel="noopener"
+                >Jetzt abschließen</a
+              >
+            </div>
+            <div class="plan">
+              <h3>Katzen-OP-Schutz</h3>
+              <div class="preis-sub">Günstiger Einstieg</div>
+              <div class="preis" style="font-size:1.45rem;padding:.45rem 0">
+                Operationsschutz
+              </div>
+              <div class="preis-sub">Fokus auf Operationskosten</div>
+              <ul>
+                <li>Absicherung von Operationskosten</li>
+                <li>Narkose und stationäre OP-Behandlung</li>
+                <li>Günstigerer Monatsbeitrag</li>
+                <li>Sinnvoll für junge, gesunde Katzen</li>
+              </ul>
+              <a class="btn-outline" href={barmeniaOP} target="_blank" rel="noopener"
+                >Beitrag berechnen</a
+              >
+            </div>
+          </div>
+          <div class="hinweis">
+            Bekannte Vorerkrankungen und bereits angeratene Behandlungen müssen beim Antrag
+            vollständig angegeben werden. Bei Unsicherheiten – melde dich bei mir.
+          </div>
+        </div>
+      </section>
+
+      <!-- ÜBER MICH -->
+      <section id="ueber">
+        <div class="container">
+          <div class="section-label">Über mich</div>
+          <h2>Dein persönlicher Ansprechpartner</h2>
+          <p class="section-sub" style="color:rgba(255,255,255,.7)">
+            Keine Hotline, kein Callcenter – du sprichst direkt mit mir.
+          </p>
+          <div class="ueber-grid">
+            <img src="https://katzenschutz-miez.de/katz_luca.jpg" alt="Luca Ambos mit Katze" />
+            <div class="ueber-text">
+              <p>
+                Hi, ich bin <strong>Luca</strong>. Ich bin mit Katzen groß geworden. Bei uns
+                zu Hause lebten zwei, Emmi und Josie, und sie gehörten ganz
+                selbstverständlich zur Familie. Eine eigene Katze habe ich gerade nicht,
+                aber in der Familie sind immer welche dabei, und bei meiner Mutter wohnt
+                inzwischen ein Hund. Für mich ist klar: So ein Tier ist ein
+                Familienmitglied, und dass es ihm gut geht, zählt genauso wie bei allen
+                anderen.
+              </p>
+              <p>
+                Wer eine Freigängerkatze hat, kennt das: Irgendwann liegt die erste tote
+                Maus vor der Tür, stolz vorbeigebracht, und die Begeisterung in der Familie
+                hält sich in Grenzen. Genau da merkt man aber, wie viel diese kleinen
+                Mitbewohner draußen erleben und wie schnell mal etwas passieren kann.
+                Freigänger brauchen einen besonderen Blick, und seinen Liebsten will man
+                eben das Beste geben.
+              </p>
+              <p>
+                Genau deswegen setze ich mich <strong>für dich</strong> ein: Ich erkläre dir
+                verständlich, was versichert ist und was nicht, helfe bei der Tarifwahl und
+                bleibe auch <strong>nach dem Abschluss</strong> dein Ansprechpartner, ob bei
+                Fragen zur Erstattung oder zu Rechnungen. Die Beratung ist <strong
+                  >kostenlos und unverbindlich</strong
+                >, per Telefon, WhatsApp oder E-Mail.
+              </p>
+              <div class="ueber-ctas">
+                <a
+                  class="btn-wa"
+                  href="https://wa.me/4917679552698"
+                  target="_blank"
+                  rel="noopener">WhatsApp schreiben</a
+                >
+                <a class="btn-mail" href="mailto:ambos.luca@gmail.com">E-Mail senden</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SZENARIEN (interaktives Karten-Karussell) -->
+      <section id="szenarien" class="szenarien">
+        <div class="container">
+          <div class="section-label">Aus der Praxis</div>
+          <h2>Echte Fellnasen, echt abgesichert</h2>
+          <p class="section-sub">Klick auf eine Karte für die ganze Geschichte.</p>
         </div>
         <SocialCards client:load cards={catCards} />
       </section>
 
-      <CostCalculator client:load />
+      <!-- REVIEWS -->
+      <section id="reviews">
+        <div class="container">
+          <div class="section-label">Google Bewertungen</div>
+          <div class="review-head">
+            <div class="score">5,0</div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <div class="review-track">
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                „Ich bin absolut begeistert von der Beratung und dem Service bei Luca! Als
+                ich auf der Suche nach einer neuen Versicherung war, hat mir Luca kompetent
+                und verständlich alle Optionen erklärt …"
+              </p>
+              <div class="autor">— Niklas K., Google-Rezension</div>
+            </div>
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                „Luca is extremely professional in everything what comes to insurance and
+                helped me and my family a lot! Highly recommend to get in touch and work
+                with him! Much respect!"
+              </p>
+              <div class="autor">— Oleg R., Google-Rezension</div>
+            </div>
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                „Nothing but positive to say. Mr Ambos is willing to help in any
+                circumstance and in a prompt manner. He has been of great advice up until
+                now and definitely deserves the praise."
+              </p>
+              <div class="autor">— Brun G., Google-Rezension</div>
+            </div>
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>„Auch die Bearbeitung meiner Anfragen ging immer schnell und unkompliziert."</p>
+              <div class="autor">— Google-Rezension</div>
+            </div>
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>„Großes Lob und Weiterempfehlung!"</p>
+              <div class="autor">— Google-Rezension</div>
+            </div>
+          </div>
+          <div class="review-cta">
+            <a
+              class="btn-primary"
+              href="https://g.page/r/CZ_BYAxxpUq7EBM/review"
+              target="_blank"
+              rel="noopener">Jetzt Bewertung schreiben</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ABLAUF -->
+      <section id="ablauf">
+        <div class="container">
+          <div class="section-label">So läuft es ab</div>
+          <h2>In 6 Schritten zur Absicherung</h2>
+          <p class="section-sub">
+            Vom ersten Kontakt bis zum fertigen Schutz – einfach und transparent.
+          </p>
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <h3>Anfrage stellen</h3>
+              <p>Kurzes Formular, 3 Minuten</p>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <h3>Katzendaten</h3>
+              <p>Rasse, Alter, Gesundheit</p>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <h3>Einschätzung</h3>
+              <p>Persönliche Empfehlung</p>
+            </div>
+            <div class="step">
+              <div class="num">4</div>
+              <h3>Schutz wählen</h3>
+              <p>KV oder OP</p>
+            </div>
+            <div class="step">
+              <div class="num">5</div>
+              <h3>Online abschließen</h3>
+              <p>Direkt über meinen Link</p>
+            </div>
+            <div class="step">
+              <div class="num">6</div>
+              <h3>Weiter begleitet</h3>
+              <p>Ich bin weiter für dich da</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <div class="container">
+          <div class="section-label">FAQ</div>
+          <h2>Häufige Fragen</h2>
+          <p class="section-sub">
+            Die wichtigsten Antworten auf einen Blick – alles Weitere klären wir
+            persönlich.
+          </p>
+          <div class="faq-list">
+            <details>
+              <summary>Was ist der Unterschied zwischen Krankenversicherung und OP-Schutz?</summary>
+              <div class="faq-a">
+                Der OP-Schutz greift bei chirurgischen Eingriffen inkl. Narkose und
+                stationärer Behandlung. Die Krankenversicherung (Vollschutz) deckt darüber
+                hinaus auch ambulante Behandlungen, Diagnostik, Medikamente und
+                Zahnbehandlungen ab – und ist der Tarif, der bei der EisbaumTabelle 2026 auf
+                Platz 1 steht.
+              </div>
+            </details>
+            <details>
+              <summary>Gibt es eine Wartezeit?</summary>
+              <div class="faq-a">
+                Bei Erkrankungen gilt eine allgemeine Wartezeit von 30 Tagen. Bei Unfällen
+                entfällt sie komplett – der Schutz greift sofort.
+              </div>
+            </details>
+            <details>
+              <summary>Wie funktioniert die Selbstbeteiligung?</summary>
+              <div class="faq-a">
+                Im Tarif mit 20 % Selbstbeteiligung zahlst du maximal 250 € pro Einreichung
+                selbst – egal wie hoch die Rechnung ist. Bei einer 3.000-€-OP wären das z.
+                B. nur 250 € Eigenanteil. Gegen einen höheren Beitrag gibt es den Tarif auch
+                ohne Selbstbeteiligung – ich rechne dir gern beide Varianten durch.
+              </div>
+            </details>
+            <details>
+              <summary>Sind Zahnerkrankungen wie FORL mitversichert?</summary>
+              <div class="faq-a">
+                Ja – Zahnextraktionen, Wurzelbehandlungen und FORL gehören zu den
+                versicherten Leistungen. Gerade bei Katzen ist das wichtig, da FORL eine der
+                häufigsten und teuersten Erkrankungen ist.
+              </div>
+            </details>
+            <details>
+              <summary>Kann ich meine Katze mit Vorerkrankungen versichern?</summary>
+              <div class="faq-a">
+                Bekannte Vorerkrankungen und bereits angeratene Behandlungen sind vom Schutz
+                ausgeschlossen und müssen beim Antrag vollständig angegeben werden. Alles,
+                was nach Vertragsbeginn neu auftritt, ist versichert. Bei Unsicherheiten:
+                Melde dich vor dem Antrag bei mir – das vermeidet Probleme im Leistungsfall.
+              </div>
+            </details>
+            <details>
+              <summary>Ist meine Katze auch im Ausland geschützt?</summary>
+              <div class="faq-a">
+                Ja, bei vorübergehenden Auslandsaufenthalten besteht weltweiter
+                Versicherungsschutz bis zu 12 Monate.
+              </div>
+            </details>
+            <details>
+              <summary>Kann ich den Tierarzt frei wählen?</summary>
+              <div class="faq-a">
+                Ja, du hast freie Tierarzt- und Tierklinikwahl in ganz Deutschland.
+                Erstattet wird bis zum 4-fachen Satz der Tierarzt-Gebührenordnung (GOT).
+              </div>
+            </details>
+            <details>
+              <summary>Was kostet die Beratung?</summary>
+              <div class="faq-a">
+                Nichts. Die Beratung ist kostenlos und unverbindlich – du entscheidest
+                danach in Ruhe, ob und wie du deine Katze absichern möchtest.
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- FORMULAR -->
+      <section id="kontakt">
+        <div class="container">
+          <div class="section-label">Katzen-Schutz-Check starten</div>
+          <h2>Kostenlose persönliche Beratung</h2>
+          <p class="section-sub">
+            Füll das Formular aus – ich melde mich zeitnah persönlich bei dir.
+          </p>
+          <form id="ksm-form" action="https://formspree.io/f/xpqnvjzw" method="POST">
+            <input type="hidden" name="_next" value={dankeUrl} />
+            <input
+              type="hidden"
+              name="_subject"
+              value="Neue Anfrage – KatzenSchutz Miez (Vorschau)"
+            />
+            <div class="form-block">
+              <div class="form-block-title">Deine Kontaktdaten</div>
+              <div class="form-row">
+                <div>
+                  <label for="vorname">Vorname *</label>
+                  <input id="vorname" type="text" name="vorname" required />
+                </div>
+                <div>
+                  <label for="nachname">Nachname *</label>
+                  <input id="nachname" type="text" name="nachname" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div>
+                  <label for="telefon">Telefonnummer *</label>
+                  <input id="telefon" type="tel" name="telefon" required />
+                </div>
+                <div>
+                  <label for="email">E-Mail *</label>
+                  <input id="email" type="email" name="email" required />
+                </div>
+              </div>
+            </div>
+            <div class="form-block">
+              <div class="form-block-title">Deine Katze</div>
+              <div class="form-row">
+                <div>
+                  <label for="katzenname">Name der Katze *</label>
+                  <input id="katzenname" type="text" name="katzenname" required />
+                </div>
+                <div>
+                  <label for="rasse">Rasse *</label>
+                  <input id="rasse" type="text" name="rasse" required />
+                </div>
+              </div>
+              <label for="alter">Alter / Geburtsdatum *</label>
+              <input id="alter" type="text" name="alter" required />
+              <label for="haltung">Freigänger oder Wohnungskatze? *</label>
+              <select id="haltung" name="haltung" required>
+                <option value="">Bitte wählen</option>
+                <option>Wohnungskatze</option>
+                <option>Freigänger</option>
+                <option>Beides</option>
+              </select>
+              <label for="vorerkrankungen">Bekannte Vorerkrankungen? *</label>
+              <select id="vorerkrankungen" name="vorerkrankungen" required>
+                <option value="">Bitte wählen</option>
+                <option>Nein</option>
+                <option>Ja</option>
+              </select>
+            </div>
+            <div class="form-block">
+              <div class="form-block-title">Dein Wunsch</div>
+              <label for="interesse">Was interessiert dich? *</label>
+              <select id="interesse" name="interesse" required>
+                <option value="">Bitte wählen</option>
+                <option>Katzenkrankenversicherung (Vollschutz)</option>
+                <option>Katzen-OP-Schutz</option>
+                <option>Unsicher – bitte beraten</option>
+              </select>
+              <label for="nachricht">Weitere Infos / Anmerkungen</label>
+              <textarea id="nachricht" name="nachricht" rows="4"></textarea>
+            </div>
+            <button type="submit">Beratung starten – kostenlos &amp; unverbindlich</button>
+            <p class="form-note">
+              Deine Daten werden ausschließlich zur Bearbeitung deiner Anfrage verwendet.
+            </p>
+          </form>
+        </div>
+      </section>
     </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-links">
+        <a href={barmeniaKV} target="_blank" rel="noopener">Katzenkrankenversicherung</a>
+        <a href={barmeniaOP} target="_blank" rel="noopener">Katzen-OP-Schutz</a>
+        <a href="mailto:ambos.luca@gmail.com">E-Mail</a>
+        <a href="https://wa.me/4917679552698" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://g.page/r/CZ_BYAxxpUq7EBM/review" target="_blank" rel="noopener"
+          >Google Bewertung</a
+        >
+        <a href={base + 'impressum.html'}>Impressum</a>
+        <a href={base + 'datenschutz.html'}>Datenschutz</a>
+        <a href="#" class="ksm-cookie-settings">Cookie-Einstellungen</a>
+      </div>
+      <p class="legal">
+        Diese Seite vermittelt offizielle Versicherungsprodukte der BarmeniaGothaer. Luca
+        Ambos ist autorisierter Vermittler. Maßgeblich für Leistung und Bedingungen sind die
+        aktuellen Versicherungsbedingungen der BarmeniaGothaer.
+      </p>
+    </footer>
+
+    <!-- WHATSAPP BUBBLE -->
+    <a
+      class="wa-bubble"
+      href="https://wa.me/4917679552698"
+      target="_blank"
+      rel="noopener">WhatsApp schreiben</a
+    >
+
+    <!-- Formular-Versand (AJAX) + Weiterleitung zur Danke-Seite -->
+    <script is:inline define:vars={{ dankeUrl }}>
+      (function () {
+        var form = document.getElementById("ksm-form");
+        if (!form) return;
+        var btn = form.querySelector("button[type=submit]");
+        var label = btn ? btn.textContent : "";
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
+          if (btn) {
+            btn.disabled = true;
+            btn.textContent = "Wird gesendet …";
+          }
+          try {
+            var res = await fetch(form.action, {
+              method: "POST",
+              body: new FormData(form),
+              headers: { Accept: "application/json" },
+            });
+            if (res.ok) {
+              window.location.href = dankeUrl;
+              return;
+            }
+            throw new Error("bad status");
+          } catch (err) {
+            alert(
+              "Es gab ein Problem beim Senden. Bitte versuch es erneut oder melde dich gern per WhatsApp."
+            );
+            if (btn) {
+              btn.disabled = false;
+              btn.textContent = label;
+            }
+          }
+        });
+      })();
+    </script>
+
+    <!-- Cookie-Consent (GA4 + Meta-Pixel nach Einwilligung) -->
+    <script is:inline src={base + 'consent.js?v=3'} defer></script>
+
+    <style>
+      /* ============================================================
+         Übernommene Sektionen von der Live-Seite katzenschutz-miez.de.
+         Astro scoped diese Styles automatisch auf die hier geschriebene
+         Markup — die React-Inseln (Hero, Kostenrechner, Karten) bleiben
+         unberührt und behalten ihr Tailwind-Styling.
+         ============================================================ */
+
+      a {
+        text-decoration: none;
+      }
+
+      /* NAV */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(18, 16, 31, 0.96);
+        backdrop-filter: blur(8px);
+        padding: 0.8rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .nav-brand {
+        color: #fff;
+        font-weight: 800;
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+      .nav-links {
+        display: flex;
+        gap: 1.2rem;
+      }
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.85rem;
+      }
+      .nav-links a:hover {
+        color: #fff;
+      }
+      .btn-nav {
+        background: #7c3aed;
+        color: #fff;
+        padding: 0.55rem 1.2rem;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        white-space: nowrap;
+      }
+      @media (max-width: 760px) {
+        .nav-links {
+          display: none;
+        }
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 4rem 1.5rem;
+        scroll-margin-top: 64px;
+      }
+      .container {
+        max-width: 1040px;
+        margin: 0 auto;
+      }
+      .section-label {
+        font-size: 0.68rem;
+        color: #7c3aed;
+        letter-spacing: 0.16em;
+        font-weight: 800;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 0.6rem;
+      }
+      h2 {
+        font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+        font-weight: 900;
+        color: #1a1a2e;
+        text-align: center;
+        margin-bottom: 0.7rem;
+        line-height: 1.25;
+      }
+      .section-sub {
+        font-size: 0.97rem;
+        color: #666;
+        text-align: center;
+        margin-bottom: 2.6rem;
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.65;
+      }
+      .section-sub a {
+        color: #7c3aed;
+        font-weight: 700;
+      }
+
+      /* TESTSIEGER-BAND */
+      .testsieger {
+        background: linear-gradient(120deg, #12101f 0%, #2a1864 60%, #7c3aed 140%);
+        padding: 3rem 1.5rem;
+      }
+      .ts-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+      .ts-main {
+        display: flex;
+        gap: 1.2rem;
+        align-items: flex-start;
+      }
+      .ts-trophy {
+        font-size: 3.4rem;
+        line-height: 1;
+        filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+      }
+      .ts-kicker {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(196, 181, 253, 0.5);
+        color: #e9e2ff;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.9rem;
+        border-radius: 30px;
+        margin-bottom: 0.7rem;
+      }
+      .ts-h {
+        color: #fff;
+        text-align: left;
+        font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+        margin-bottom: 0.6rem;
+      }
+      .ts-sub {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.97rem;
+        line-height: 1.65;
+        margin-bottom: 1rem;
+      }
+      .ts-sub strong {
+        color: #fff;
+      }
+      .ts-link {
+        display: inline-block;
+        background: #fff;
+        color: #5b21b6;
+        font-weight: 800;
+        font-size: 0.9rem;
+        padding: 0.7rem 1.4rem;
+        border-radius: 30px;
+      }
+      .ts-side {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+      .ts-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        padding: 0.9rem 1.1rem;
+        color: #fff;
+      }
+      .ts-stars {
+        color: #fbbc04;
+        font-size: 1.25rem;
+        letter-spacing: 0.05em;
+      }
+      .ts-emoji {
+        font-size: 1.5rem;
+      }
+      .ts-big {
+        font-weight: 800;
+        font-size: 0.95rem;
+      }
+      .ts-item a {
+        color: #c4b5fd;
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+      .ts-muted {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.82rem;
+      }
+      .ts-logo {
+        justify-content: center;
+      }
+      .ts-logo img {
+        height: 34px;
+        width: auto;
+      }
+      @media (max-width: 760px) {
+        .ts-grid {
+          grid-template-columns: 1fr;
+        }
+        .ts-h {
+          text-align: left;
+        }
+      }
+
+      /* KOSTEN / WARUM */
+      #kosten {
+        background: #f8f7fc;
+      }
+      .cards-3 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.2rem;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid #ece9f6;
+        border-radius: 16px;
+        padding: 1.6rem;
+        box-shadow: 0 3px 14px rgba(26, 26, 46, 0.05);
+      }
+      .card h3 {
+        font-size: 1.05rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+      }
+      .card p {
+        font-size: 0.88rem;
+        color: #555;
+        line-height: 1.65;
+      }
+      .kosten-tabelle {
+        margin-top: 2.2rem;
+        background: #fff;
+        border: 1px solid #ece9f6;
+        border-radius: 16px;
+        padding: 1.6rem;
+        box-shadow: 0 3px 14px rgba(26, 26, 46, 0.05);
+      }
+      .kosten-tabelle h3 {
+        font-size: 1rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      .kosten-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.7rem 0.2rem;
+        border-bottom: 1px solid #f1eff8;
+        font-size: 0.9rem;
+      }
+      .kosten-row:last-child {
+        border-bottom: none;
+      }
+      .kosten-row .kr-name {
+        color: #333;
+        font-weight: 600;
+      }
+      .kosten-row .kr-preis {
+        color: #7c3aed;
+        font-weight: 800;
+        white-space: nowrap;
+        padding-left: 1rem;
+      }
+      .kosten-fussnote {
+        font-size: 0.75rem;
+        color: #999;
+        margin-top: 0.9rem;
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      /* LEISTUNGEN */
+      .leistungen-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.4rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .leistung-block {
+        background: #1a1a2e;
+        border-radius: 18px;
+        padding: 1.8rem;
+        color: #fff;
+      }
+      .leistung-block.hell {
+        background: #f3efff;
+        color: #1a1a2e;
+      }
+      .leistung-block h3 {
+        font-size: 1.05rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+      .leistung-block.hell h3 {
+        color: #5b21b6;
+      }
+      .leistung-block ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .leistung-block li {
+        font-size: 0.89rem;
+        padding: 0.4rem 0 0.4rem 1.7rem;
+        position: relative;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.88);
+      }
+      .leistung-block.hell li {
+        color: #444;
+      }
+      .leistung-block li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #22c55e;
+        font-weight: 900;
+      }
+      .leistung-block li strong {
+        color: #fff;
+      }
+      .leistung-block.hell li strong {
+        color: #1a1a2e;
+      }
+
+      /* VERGLEICH */
+      #vergleich {
+        background: #f8f7fc;
+      }
+      .vergleich-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 1.4rem;
+        max-width: 860px;
+        margin: 0 auto;
+      }
+      .plan {
+        border: 2px solid #ece9f6;
+        border-radius: 18px;
+        padding: 1.9rem;
+        position: relative;
+        background: #fff;
+      }
+      .plan.empfohlen {
+        border-color: #7c3aed;
+        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.14);
+      }
+      .plan-tag {
+        position: absolute;
+        top: -13px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #7c3aed;
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 800;
+        padding: 0.32rem 1rem;
+        border-radius: 20px;
+        white-space: nowrap;
+      }
+      .plan h3 {
+        font-size: 1.12rem;
+        font-weight: 800;
+        margin-bottom: 0.3rem;
+      }
+      .plan .preis {
+        font-size: 2.1rem;
+        font-weight: 900;
+        color: #1a1a2e;
+        margin: 0.6rem 0 0.2rem;
+      }
+      .plan .preis span {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #777;
+      }
+      .plan .preis-sub {
+        font-size: 0.78rem;
+        color: #888;
+        margin-bottom: 1rem;
+      }
+      .plan ul {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0 1.5rem;
+      }
+      .plan li {
+        font-size: 0.88rem;
+        color: #444;
+        padding: 0.35rem 0 0.35rem 1.5rem;
+        position: relative;
+        line-height: 1.5;
+      }
+      .plan li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #7c3aed;
+        font-weight: 800;
+      }
+      .plan .btn-primary {
+        display: block;
+        background: #7c3aed;
+        color: #fff;
+        width: 100%;
+        text-align: center;
+        font-size: 0.93rem;
+        font-weight: 800;
+        padding: 0.9rem;
+        border-radius: 12px;
+      }
+      .plan .btn-primary:hover {
+        background: #6d28d9;
+      }
+      .plan .btn-outline {
+        display: block;
+        text-align: center;
+        border: 2px solid #7c3aed;
+        color: #7c3aed;
+        font-weight: 800;
+        padding: 0.8rem;
+        border-radius: 12px;
+        font-size: 0.93rem;
+      }
+      .hinweis {
+        max-width: 740px;
+        margin: 1.8rem auto 0;
+        font-size: 0.8rem;
+        color: #777;
+        text-align: center;
+        line-height: 1.6;
+        background: #fff;
+        border: 1px solid #ece9f6;
+        border-radius: 12px;
+        padding: 1rem 1.3rem;
+      }
+
+      /* ÜBER MICH */
+      #ueber {
+        background: #12101f;
+      }
+      #ueber .section-label {
+        color: #a78bfa;
+      }
+      #ueber h2 {
+        color: #fff;
+      }
+      .ueber-grid {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 2.5rem;
+        align-items: center;
+        max-width: 880px;
+        margin: 0 auto;
+      }
+      .ueber-grid img {
+        border-radius: 18px;
+        width: 100%;
+        height: 360px;
+        object-fit: cover;
+      }
+      .ueber-text p {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.96rem;
+        line-height: 1.75;
+        margin-bottom: 1rem;
+      }
+      .ueber-text strong {
+        color: #fff;
+      }
+      .ueber-ctas {
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        margin-top: 1.3rem;
+      }
+      .btn-wa {
+        background: #25d366;
+        color: #fff;
+        padding: 0.75rem 1.4rem;
+        border-radius: 30px;
+        font-weight: 800;
+        font-size: 0.88rem;
+        display: inline-block;
+      }
+      .btn-mail {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        padding: 0.75rem 1.4rem;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.88rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        display: inline-block;
+      }
+      @media (max-width: 700px) {
+        .ueber-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* SZENARIEN-Wrapper (Karten-Karussell) */
+      .szenarien {
+        background: #f8f7fc;
+      }
+
+      /* REVIEWS */
+      #reviews {
+        background: #fff;
+      }
+      .review-head {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .review-head .score {
+        font-size: 2.8rem;
+        font-weight: 900;
+      }
+      .stars {
+        color: #fbbc04;
+        font-size: 1.1rem;
+        letter-spacing: 0.1em;
+      }
+      .review-track {
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        padding: 0.5rem 0.2rem 1rem;
+        scroll-snap-type: x mandatory;
+      }
+      .review-card {
+        min-width: 280px;
+        max-width: 280px;
+        background: #fff;
+        border: 1px solid #ece9f6;
+        border-radius: 16px;
+        padding: 1.4rem;
+        scroll-snap-align: start;
+        box-shadow: 0 3px 12px rgba(26, 26, 46, 0.05);
+      }
+      .review-card .stars {
+        font-size: 0.95rem;
+        margin-bottom: 0.6rem;
+      }
+      .review-card p {
+        font-size: 0.86rem;
+        color: #444;
+        line-height: 1.6;
+        margin-bottom: 0.7rem;
+      }
+      .review-card .autor {
+        font-size: 0.78rem;
+        color: #888;
+        font-weight: 600;
+      }
+      .review-cta {
+        text-align: center;
+        margin-top: 1.6rem;
+      }
+      .review-cta .btn-primary {
+        display: inline-block;
+        background: #7c3aed;
+        color: #fff;
+        padding: 1rem 2.2rem;
+        border-radius: 30px;
+        font-weight: 800;
+        font-size: 1rem;
+        box-shadow: 0 8px 24px rgba(124, 58, 237, 0.45);
+      }
+      .review-cta .btn-primary:hover {
+        background: #6d28d9;
+      }
+
+      /* ABLAUF */
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .step {
+        text-align: center;
+        padding: 1.2rem 0.8rem;
+      }
+      .step .num {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #7c3aed;
+        color: #fff;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 0.7rem;
+        font-size: 1.05rem;
+      }
+      .step h3 {
+        font-size: 0.9rem;
+        font-weight: 800;
+        margin-bottom: 0.3rem;
+      }
+      .step p {
+        font-size: 0.78rem;
+        color: #777;
+        line-height: 1.5;
+      }
+
+      /* FAQ */
+      #faq {
+        background: #f8f7fc;
+      }
+      .faq-list {
+        max-width: 740px;
+        margin: 0 auto;
+      }
+      details {
+        background: #fff;
+        border: 1px solid #ece9f6;
+        border-radius: 14px;
+        margin-bottom: 0.8rem;
+        overflow: hidden;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 1.1rem 3rem 1.1rem 1.3rem;
+        list-style: none;
+        position: relative;
+        color: #1a1a2e;
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      summary::after {
+        content: "+";
+        position: absolute;
+        right: 1.2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: #7c3aed;
+        transition: transform 0.2s;
+      }
+      details[open] summary::after {
+        transform: translateY(-50%) rotate(45deg);
+      }
+      .faq-a {
+        padding: 0 1.3rem 1.2rem;
+        font-size: 0.89rem;
+        color: #555;
+        line-height: 1.7;
+      }
+
+      /* FORMULAR */
+      #kontakt {
+        background: #12101f;
+      }
+      #kontakt .section-label {
+        color: #a78bfa;
+      }
+      #kontakt h2 {
+        color: #fff;
+      }
+      #kontakt .section-sub {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      form {
+        max-width: 660px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 20px;
+        padding: 2.2rem;
+      }
+      .form-block {
+        margin-bottom: 1.4rem;
+      }
+      .form-block-title {
+        font-size: 0.7rem;
+        font-weight: 800;
+        color: #7c3aed;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-bottom: 0.8rem;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.9rem;
+      }
+      @media (max-width: 560px) {
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+      label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+        color: #333;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 0.72rem 0.9rem;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-family: inherit;
+        margin-bottom: 0.9rem;
+        background: #fff;
+        color: #1a1a2e;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: 2px solid #7c3aed;
+        border-color: transparent;
+      }
+      button[type="submit"] {
+        width: 100%;
+        background: #7c3aed;
+        color: #fff;
+        border: none;
+        padding: 1.05rem;
+        border-radius: 30px;
+        font-weight: 800;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      button[type="submit"]:hover {
+        background: #6d28d9;
+      }
+      .form-note {
+        font-size: 0.75rem;
+        color: #888;
+        text-align: center;
+        margin-top: 0.8rem;
+      }
+
+      /* FOOTER */
+      footer {
+        background: #0d0b18;
+        color: rgba(255, 255, 255, 0.65);
+        padding: 2.6rem 1.5rem;
+        text-align: center;
+        font-size: 0.82rem;
+      }
+      .footer-links {
+        display: flex;
+        gap: 1.4rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 1.4rem;
+      }
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 600;
+      }
+      .footer-links a:hover {
+        color: #fff;
+      }
+      footer .legal {
+        max-width: 660px;
+        margin: 0 auto;
+        line-height: 1.7;
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.45);
+      }
+
+      /* WHATSAPP BUBBLE */
+      .wa-bubble {
+        position: fixed;
+        bottom: 1.4rem;
+        right: 1.4rem;
+        z-index: 200;
+        background: #25d366;
+        color: #fff;
+        font-weight: 800;
+        font-size: 0.88rem;
+        padding: 0.85rem 1.3rem;
+        border-radius: 30px;
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    </style>
   </body>
 </html>

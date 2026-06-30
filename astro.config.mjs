@@ -6,5 +6,7 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: "https://lugaambrosi.github.io",
   base: "/katzenschutz-vorschau/",
+  // .html-Endungen wie auf der Live-Seite (impressum.html, datenschutz.html, danke.html)
+  build: { format: "file" },
   integrations: [react(), tailwind({ applyBaseStyles: false })],
 });

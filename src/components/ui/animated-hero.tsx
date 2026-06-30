@@ -30,8 +30,14 @@ function Hero() {
       <div className="container mx-auto relative z-10 px-4">
         <div className="flex gap-8 py-20 items-center justify-center flex-col">
           <div>
-            <Button variant="secondary" size="sm" className="gap-4">
-              EisbaumTabelle Testsieger 2026 <MoveRight className="w-4 h-4" />
+            <Button asChild variant="secondary" size="sm" className="gap-4">
+              <a
+                href="https://www.eisbaumtabelle.de/katze"
+                target="_blank"
+                rel="noopener"
+              >
+                EisbaumTabelle Testsieger 2026 <MoveRight className="w-4 h-4" />
+              </a>
             </Button>
           </div>
           <div className="flex gap-4 flex-col">
@@ -64,11 +70,19 @@ function Hero() {
             </p>
           </div>
           <div className="flex flex-row gap-3 flex-wrap justify-center">
-            <Button size="lg" className="gap-4" variant="outline">
-              Lieber erst beraten lassen <PhoneCall className="w-4 h-4" />
+            <Button asChild size="lg" className="gap-4" variant="outline">
+              <a href="#kontakt">
+                Lieber erst beraten lassen <PhoneCall className="w-4 h-4" />
+              </a>
             </Button>
-            <Button size="lg" className="gap-4">
-              Jetzt Tarif berechnen <MoveRight className="w-4 h-4" />
+            <Button asChild size="lg" className="gap-4">
+              <a
+                href="https://ssl.barmenia.de/online-versichern/#/tierversicherung/Beitrag?tierart=Katze&versicherung=kv&adm=00011802"
+                target="_blank"
+                rel="noopener"
+              >
+                Jetzt Tarif berechnen <MoveRight className="w-4 h-4" />
+              </a>
             </Button>
           </div>
         </div>

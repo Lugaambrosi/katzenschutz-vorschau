@@ -1,0 +1,106 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Impressum – KatzenSchutz Miez</title>
+<meta name="robots" content="noindex, follow" />
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href={base}>KatzenSchutz Miez</a>
+  <a class="btn-nav" href={base}>Zurück zur Startseite</a>
+</nav>
+
+<main>
+<h1>Impressum</h1>
+
+<h2>Angaben gemäß § 5 DDG</h2>
+<div class="box">
+<p><strong>Luca Ambos</strong><br />
+Geschäftsstelle<br />
+Görschstraße 34<br />
+13187 Berlin</p>
+<p>Mobil: <a href="tel:+4917679552698">0176 795 526 98</a><br />
+E-Mail: <a href="mailto:luca.ambos@barmenia.de">luca.ambos@barmenia.de</a></p>
+</div>
+
+<h2>Berufsrechtliche Angaben</h2>
+<p>Tätigkeit als gebundener Versicherungsvertreter nach § 34d Abs. 7 Gewerbeordnung (GewO), ausschließlich tätig für die BarmeniaGothaer. Die BarmeniaGothaer übernimmt die Haftung aus der Vermittlertätigkeit.</p>
+<p><strong>Vermittlerregisternummer:</strong> D-TE3P-PUGVJ-8</p>
+<p><strong>Registerstelle:</strong><br />
+Deutscher Industrie- und Handelskammertag (DIHK) e. V.<br />
+Breite Straße 29, 10178 Berlin<br />
+Telefon: 0180 600 585 0<br />
+<a href="https://www.vermittlerregister.info" target="_blank" rel="noopener">www.vermittlerregister.info</a></p>
+
+<h2>Vermittelte Versicherungsunternehmen</h2>
+<h3>BarmeniaGothaer AG</h3>
+<p>Vorstand: Dr. Andreas Eurich, Oliver Scholler (Vorsitzende), Thomas Bischof, Dr. Sylvia Eichelberg, Harald Ingo Epple, Frank Lamsfuß, Christian Rieß, Anna von Bülow<br />
+Aufsichtsratsvorsitzender: Prof. Dr. Werner Göring<br />
+Rechtsform: Aktiengesellschaft · Sitz: Köln<br />
+Amtsgericht Köln, HRB 62111 · USt-IdNr.: DE193530033</p>
+
+<h3>Barmenia Allgemeine Versicherung AG</h3>
+<p>Vorstand: Dr. Andreas Eurich, Oliver Scholler, Dr. Sylvia Eichelberg, Harald Ingo Epple, Frank Lamsfuß, Christian Rieß<br />
+Aufsichtsratsvorsitzender: Dr. Johannes Fiala<br />
+Sitz: Wuppertal · Amtsgericht Wuppertal, HRB 3033 · USt-IdNr.: DE114152021</p>
+
+<h3>Barmenia Lebensversicherung aG</h3>
+<p>Vorstand: Dr. Andreas Eurich, Oliver Scholler, Dr. Sylvia Eichelberg, Harald Ingo Epple, Frank Lamsfuß, Christian Rieß<br />
+Aufsichtsratsvorsitzender: Cosmas Bauer<br />
+Sitz: Wuppertal · Amtsgericht Wuppertal, HRA 2168</p>
+
+<p>Weitere Informationen zur Barmenia Gruppe: <a href="https://www.barmenia.de" target="_blank" rel="noopener">www.barmenia.de</a></p>
+
+<h2>Schlichtungsstellen</h2>
+<p><strong>Für Lebens- und Sachversicherungen:</strong><br />
+Verein Versicherungsombudsmann e. V.<br />
+Postfach 080632, 10006 Berlin<br />
+<a href="https://www.versicherungsombudsmann.de" target="_blank" rel="noopener">www.versicherungsombudsmann.de</a></p>
+<p><strong>Für private Krankenversicherungen:</strong><br />
+Ombudsmann für private Kranken- und Pflegeversicherung<br />
+Postfach 06 02 22, 10052 Berlin<br />
+<a href="https://www.pkv-ombudsmann.de" target="_blank" rel="noopener">www.pkv-ombudsmann.de</a></p>
+
+<h2>Verbraucherstreitbeilegung</h2>
+<p>Zur Beilegung von Streitigkeiten aus der Versicherungsvermittlung nehme ich am Streitbeilegungsverfahren vor den oben genannten anerkannten Schlichtungsstellen teil (§ 214 VVG, § 36 VSBG).</p>
+
+<h2>Haftung für Inhalte</h2>
+<p>Die Inhalte dieser Seite wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden. Maßgeblich für Versicherungsleistungen und -bedingungen sind ausschließlich die jeweils gültigen Versicherungsbedingungen der BarmeniaGothaer.</p>
+
+<h2>Haftung für Links</h2>
+<p>Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte kein Einfluss besteht. Für diese fremden Inhalte wird keine Gewähr übernommen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+</main>
+
+<footer>
+  <a href={base}>Startseite</a> · <a href={base + 'impressum.html'}>Impressum</a> · <a href={base + 'datenschutz.html'}>Datenschutz</a> · <a href="#" class="ksm-cookie-settings">Cookie-Einstellungen</a>
+</footer>
+
+<script is:inline src={base + 'consent.js?v=3'} defer></script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a2e;background:#fff;line-height:1.7}
+a{color:#7c3aed;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{position:sticky;top:0;z-index:100;background:rgba(18,16,31,.96);padding:.8rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-brand{color:#fff;font-weight:800;font-size:1rem}
+.btn-nav{background:#7c3aed;color:#fff;padding:.55rem 1.2rem;border-radius:30px;font-weight:700;font-size:.85rem}
+.btn-nav:hover{text-decoration:none}
+main{max-width:760px;margin:0 auto;padding:3rem 1.5rem 4rem}
+h1{font-size:1.9rem;font-weight:900;margin-bottom:2rem}
+h2{font-size:1.15rem;font-weight:800;margin:2.2rem 0 .7rem;color:#1a1a2e}
+h3{font-size:.98rem;font-weight:800;margin:1.4rem 0 .4rem}
+p{font-size:.92rem;color:#333;margin-bottom:.8rem}
+.box{background:#f8f7fc;border:1px solid #ece9f6;border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:1rem}
+footer{background:#0d0b18;color:rgba(255,255,255,.65);padding:2rem 1.5rem;text-align:center;font-size:.8rem}
+footer a{color:rgba(255,255,255,.8);margin:0 .7rem}
+</style>
+</body>
+</html>
