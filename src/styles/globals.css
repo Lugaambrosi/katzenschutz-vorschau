@@ -74,6 +74,18 @@
   .hero-ken-burns { animation: none; transform: scale(-1, 1); }
 }
 
+/* ---- CTA-Button: sanftes Glühen, das zum Klick einlädt ---- */
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 10px 28px -6px rgba(124, 58, 237, 0.55); }
+  50% { box-shadow: 0 16px 40px -4px rgba(124, 58, 237, 0.9); }
+}
+.cta-pulse {
+  animation: ctaPulse 2.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-pulse { animation: none; }
+}
+
 /* ---- Card Fan Carousel ---- */
 .fan-layout {
   height: 25rem;

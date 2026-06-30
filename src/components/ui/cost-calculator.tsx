@@ -1,5 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { ArrowRight } from "lucide-react";
+
+const BARMENIA_KV =
+  "https://ssl.barmenia.de/online-versichern/#/tierversicherung/Beitrag?tierart=Katze&versicherung=kv&adm=00011802";
 
 interface Scenario {
   name: string;
@@ -220,6 +224,25 @@ export default function CostCalculator() {
             Voller Schutz schon ab <strong className="text-[#1a1a2e]">{euro2(tarif.beitrag)}</strong>/Monat
             <span className="text-[#999]"> ({tarif.name})</span>
             {sb && <span className="block text-xs text-[#999] mt-1">Mit Selbstbeteiligung sinkt der Beitrag.</span>}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-7 text-center">
+          <a
+            href={BARMENIA_KV}
+            target="_blank"
+            rel="noopener"
+            className="cta-pulse group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#a855f7] px-8 py-4 text-base font-extrabold text-white transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7c3aed] focus-visible:ring-offset-2"
+          >
+            Jetzt meine Katze absichern
+            <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+          </a>
+          <div className="mt-3 text-xs text-[#999]">
+            In 3 Minuten online –{" "}
+            <a href="#kontakt" className="font-semibold text-[#7c3aed] hover:underline">
+              oder kostenlos beraten lassen
+            </a>
           </div>
         </div>
 
