@@ -59,14 +59,23 @@ function useCountUp(target: number, duration = 650) {
   return val;
 }
 
+const SB_RATE = 0.2;
+const SB_MAX = 250;
+
 export default function CostCalculator() {
   const [sIdx, setSIdx] = useState(1); // Start: Unfall
   const [tKey, setTKey] = useState("premiumplus");
+  const [sb, setSb] = useState(false);
 
   const scenario = SCENARIOS[sIdx];
   const tarif = TARIFE.find((t) => t.key === tKey) ?? TARIFE[3];
 
+  const eigenanteil = sb ? Math.min(Math.round(scenario.cost * SB_RATE), SB_MAX) : 0;
+  const erstattet = scenario.cost - eigenanteil;
+  const erstattetPct = Math.round((erstattet / scenario.cost) * 100);
+
   const cCost = useCountUp(scenario.cost);
+  const cEigen = useCountUp(eigenanteil);
 
   return (
     <section className="bg-white py-16 md:py-24 px-4">
@@ -137,6 +146,35 @@ export default function CostCalculator() {
           </div>
         </div>
 
+        {/* Selbstbeteiligung */}
+        <div className="mb-8">
+          <div className="text-sm font-semibold text-[#555] mb-2">Selbstbeteiligung</div>
+          <div className="grid grid-cols-2 gap-2 p-1 bg-[#f3f1fb] rounded-xl">
+            <button
+              onClick={() => setSb(false)}
+              className={`py-2.5 px-2 rounded-lg text-sm font-semibold transition-all ${
+                !sb ? "bg-[#7c3aed] text-white shadow" : "text-[#555] hover:bg-white"
+              }`}
+            >
+              Ohne
+              <span className={`block text-[11px] font-medium mt-0.5 ${!sb ? "text-white/80" : "text-[#999]"}`}>
+                0 € Eigenanteil
+              </span>
+            </button>
+            <button
+              onClick={() => setSb(true)}
+              className={`py-2.5 px-2 rounded-lg text-sm font-semibold transition-all ${
+                sb ? "bg-[#7c3aed] text-white shadow" : "text-[#555] hover:bg-white"
+              }`}
+            >
+              Mit 20 %
+              <span className={`block text-[11px] font-medium mt-0.5 ${sb ? "text-white/80" : "text-[#999]"}`}>
+                max. 250 € · spart Beitrag
+              </span>
+            </button>
+          </div>
+        </div>
+
         {/* Ergebnis */}
         <div className="rounded-2xl border border-[#eee] shadow-sm p-6 md:p-8">
           <div className="flex items-baseline justify-between mb-4">
@@ -144,17 +182,27 @@ export default function CostCalculator() {
             <span className="text-2xl font-extrabold text-[#1a1a2e] tabular-nums">{euro0(cCost)}</span>
           </div>
 
-          {/* 100 %-Balken */}
-          <div className="flex h-7 w-full overflow-hidden rounded-full bg-[#e9f7ee] mb-2">
-            <div className="flex items-center justify-center w-full bg-[#16a34a]">
+          {/* Aufschlüsselungs-Balken */}
+          <div className="flex h-7 w-full overflow-hidden rounded-full bg-[#fadbd8] mb-2">
+            <div
+              className="flex items-center justify-center bg-[#16a34a] transition-all duration-700 ease-out"
+              style={{ width: `${erstattetPct}%` }}
+            >
               <span className="text-[11px] font-bold text-white px-2 whitespace-nowrap">
-                100 % erstattet
+                {erstattetPct} % erstattet
               </span>
             </div>
           </div>
-          <div className="text-center text-xs font-medium text-[#888] mb-6">
-            OP-Kosten ohne Jahreshöchstgrenze – in jedem Tarif
-          </div>
+          {sb ? (
+            <div className="flex justify-between text-xs font-medium mb-6">
+              <span className="text-[#16a34a]">Barmenia erstattet</span>
+              <span className="text-[#c0392b]">deine Selbstbeteiligung</span>
+            </div>
+          ) : (
+            <div className="text-center text-xs font-medium text-[#888] mb-6">
+              OP-Kosten ohne Jahreshöchstgrenze – in jedem Tarif
+            </div>
+          )}
 
           {/* Kontrast */}
           <div className="grid grid-cols-2 gap-4">
@@ -164,13 +212,14 @@ export default function CostCalculator() {
             </div>
             <div className="rounded-xl bg-[#e9f7ee] p-4 text-center">
               <div className="text-xs font-semibold text-[#16a34a] mb-1">Mit Barmenia zahlst du</div>
-              <div className="text-2xl md:text-3xl font-extrabold text-[#16a34a] tabular-nums">0 €</div>
+              <div className="text-2xl md:text-3xl font-extrabold text-[#16a34a] tabular-nums">{euro0(cEigen)}</div>
             </div>
           </div>
 
           <div className="mt-5 text-center text-sm text-[#555]">
             Voller Schutz schon ab <strong className="text-[#1a1a2e]">{euro2(tarif.beitrag)}</strong>/Monat
             <span className="text-[#999]"> ({tarif.name})</span>
+            {sb && <span className="block text-xs text-[#999] mt-1">Mit Selbstbeteiligung sinkt der Beitrag.</span>}
           </div>
         </div>
 
