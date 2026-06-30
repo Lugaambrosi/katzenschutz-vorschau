@@ -58,6 +58,19 @@
   }
 }
 
+/* ---- Hero: Spiegelung + langsamer Ken-Burns-Zoom ---- */
+.hero-ken-burns {
+  transform-origin: center center;
+  animation: heroKenBurns 24s ease-in-out infinite alternate;
+}
+@keyframes heroKenBurns {
+  from { transform: scale(-1, 1); }
+  to   { transform: scale(-1.12, 1.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-ken-burns { animation: none; transform: scale(-1, 1); }
+}
+
 /* ---- Card Fan Carousel ---- */
 .fan-layout {
   height: 25rem;

@@ -23,7 +23,7 @@ function Hero() {
       <img
         src={`${import.meta.env.BASE_URL}header.jpg`}
         alt="Weiße Katze auf dem Sofa"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="hero-ken-burns absolute inset-0 w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/25" />
 
