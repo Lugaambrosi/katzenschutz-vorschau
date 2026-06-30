@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Katzenschutz – Hero-Vorschau (2. Version)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          background: "#ffffff",
+          foreground: "#1a1a2e",
+          primary: "#7c3aed",
+          "primary-foreground": "#ffffff",
+          secondary: "#efe9fb",
+          "secondary-foreground": "#5b21b6",
+          muted: "#f4f4f5",
+          "muted-foreground": "#6b7280",
+          accent: "#efe9fb",
+          border: "#e5e7eb",
+          "violet-300": "#c4b5fd",
+        },
+      },
+    },
+  };
+</script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .rot { min-height: 1.25em; }
+  .word {
+    position: absolute; left: 0; right: 0;
+    opacity: 0; transform: translateY(150%);
+    transition: transform .55s cubic-bezier(.2,.8,.3,1.2), opacity .45s ease;
+    color: #c4b5fd;
+  }
+  .word.active { opacity: 1; transform: translateY(0); }
+  .word.prev { opacity: 0; transform: translateY(-150%); }
+</style>
+</head>
+<body class="bg-background text-foreground">
+  <div class="relative w-full min-h-[92vh] flex items-center overflow-hidden">
+    <!-- Hintergrund-Header -->
+    <img src="header.jpg" alt="Weiße Katze auf dem Sofa" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(0,0,0,.75), rgba(0,0,0,.55) 45%, rgba(0,0,0,.25))"></div>
+
+    <div class="container mx-auto relative z-10 px-4">
+      <div class="flex gap-8 py-20 items-center justify-center flex-col">
+        <div>
+          <button class="inline-flex items-center justify-center gap-3 h-9 rounded-md px-3 text-sm font-medium bg-secondary text-secondary-foreground hover:opacity-90 transition">
+            EisbaumTabelle Testsieger 2026
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+        <div class="flex gap-4 flex-col">
+          <h1 class="text-5xl md:text-7xl max-w-2xl mx-auto tracking-tighter text-center font-normal text-white">
+            <span>Katzenschutz, der</span>
+            <span class="rot relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1" id="rot">&nbsp;</span>
+          </h1>
+
+          <p class="text-lg md:text-xl leading-relaxed tracking-tight text-white/80 max-w-2xl mx-auto text-center">
+            Tierarztkosten steigen, und eine Operation geht schnell ins Geld.
+            Ich helfe dir, deine Katze richtig abzusichern: persönlich,
+            verständlich und ohne Callcenter. Von Katzenmensch zu Katzenmensch.
+          </p>
+        </div>
+
+        <div class="flex flex-row gap-3 flex-wrap justify-center">
+          <button class="inline-flex items-center justify-center gap-3 h-11 rounded-md px-8 text-sm font-medium border border-white/40 bg-white/10 text-white hover:bg-white/20 transition backdrop-blur-sm">
+            Lieber erst beraten lassen
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/><path d="M14.05 2a9 9 0 0 1 8 7.94"/><path d="M14.05 6A5 5 0 0 1 18 10"/></svg>
+          </button>
+          <button class="inline-flex items-center justify-center gap-3 h-11 rounded-md px-8 text-sm font-medium bg-primary text-primary-foreground hover:opacity-90 transition shadow-lg shadow-primary/40">
+            Jetzt Tarif berechnen
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const words = ["sorgenfrei", "bezahlbar", "persönlich", "fair", "einfach"];
+    const rot = document.getElementById("rot");
+    rot.innerHTML = "&nbsp;";
+    const spans = words.map((w) => {
+      const s = document.createElement("span");
+      s.className = "word font-semibold";
+      s.textContent = w;
+      rot.appendChild(s);
+      return s;
+    });
+    let i = 0;
+    function render() {
+      spans.forEach((s, idx) => {
+        s.classList.remove("active", "prev");
+        if (idx === i) s.classList.add("active");
+        else if (idx < i) s.classList.add("prev");
+      });
+    }
+    render();
+    setInterval(() => { i = (i + 1) % words.length; render(); }, 2000);
+  </script>
+</body>
+</html>
