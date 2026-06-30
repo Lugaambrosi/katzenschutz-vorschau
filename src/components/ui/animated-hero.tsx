@@ -48,7 +48,7 @@ function Hero() {
                 {titles.map((title, index) => (
                   <motion.span
                     key={index}
-                    className="absolute inset-0 flex items-center justify-center px-2 font-semibold text-violet-300"
+                    className="absolute inset-0 flex items-center justify-center px-2 font-semibold text-[#babaff]"
                     initial={{ opacity: 0, y: "-100" }}
                     transition={{ type: "spring", stiffness: 50 }}
                     animate={

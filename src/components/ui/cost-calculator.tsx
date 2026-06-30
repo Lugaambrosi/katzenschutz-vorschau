@@ -85,8 +85,8 @@ export default function CostCalculator() {
     <section className="bg-white py-16 md:py-24 px-4">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#7c3aed] mb-2">Zum Mitrechnen</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a1a2e]">Was kostet der Ernstfall?</h2>
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#0071b2] mb-2">Zum Mitrechnen</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#002641]">Was kostet der Ernstfall?</h2>
           <p className="text-[#666] mt-3">Schieb durch echte OP-Fälle und sieh, was du mit und ohne Versicherung zahlst.</p>
         </div>
 
@@ -96,7 +96,7 @@ export default function CostCalculator() {
             <div className="flex items-center gap-3">
               <span className="text-3xl" aria-hidden>{scenario.emoji}</span>
               <div>
-                <div className="font-bold text-[#1a1a2e] leading-tight">{scenario.name}</div>
+                <div className="font-bold text-[#002641] leading-tight">{scenario.name}</div>
                 <div className="text-sm text-[#777]">{scenario.note}</div>
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function CostCalculator() {
             value={sIdx}
             onChange={(e) => setSIdx(Number(e.target.value))}
             aria-label="Szenario wählen"
-            className="w-full accent-[#7c3aed] cursor-pointer h-2"
+            className="w-full accent-[#0071b2] cursor-pointer h-2"
           />
           <div className="flex justify-between mt-2">
             {SCENARIOS.map((s, i) => (
@@ -132,13 +132,13 @@ export default function CostCalculator() {
         {/* Tarif-Umschalter (zeigt den Monatsbeitrag) */}
         <div className="mb-8">
           <div className="text-sm font-semibold text-[#555] mb-2">Tarif</div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-1 bg-[#f3f1fb] rounded-xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-1 bg-[#eef4fa] rounded-xl">
             {TARIFE.map((t) => (
               <button
                 key={t.key}
                 onClick={() => setTKey(t.key)}
                 className={`relative py-2.5 px-2 rounded-lg text-sm font-semibold transition-all ${
-                  t.key === tKey ? "bg-[#7c3aed] text-white shadow" : "text-[#555] hover:bg-white"
+                  t.key === tKey ? "bg-[#0071b2] text-white shadow" : "text-[#555] hover:bg-white"
                 }`}
               >
                 {t.name}
@@ -153,11 +153,11 @@ export default function CostCalculator() {
         {/* Selbstbeteiligung */}
         <div className="mb-8">
           <div className="text-sm font-semibold text-[#555] mb-2">Selbstbeteiligung</div>
-          <div className="grid grid-cols-2 gap-2 p-1 bg-[#f3f1fb] rounded-xl">
+          <div className="grid grid-cols-2 gap-2 p-1 bg-[#eef4fa] rounded-xl">
             <button
               onClick={() => setSb(false)}
               className={`py-2.5 px-2 rounded-lg text-sm font-semibold transition-all ${
-                !sb ? "bg-[#7c3aed] text-white shadow" : "text-[#555] hover:bg-white"
+                !sb ? "bg-[#0071b2] text-white shadow" : "text-[#555] hover:bg-white"
               }`}
             >
               Ohne
@@ -168,7 +168,7 @@ export default function CostCalculator() {
             <button
               onClick={() => setSb(true)}
               className={`py-2.5 px-2 rounded-lg text-sm font-semibold transition-all ${
-                sb ? "bg-[#7c3aed] text-white shadow" : "text-[#555] hover:bg-white"
+                sb ? "bg-[#0071b2] text-white shadow" : "text-[#555] hover:bg-white"
               }`}
             >
               Mit 20 %
@@ -183,7 +183,7 @@ export default function CostCalculator() {
         <div className="rounded-2xl border border-[#eee] shadow-sm p-6 md:p-8">
           <div className="flex items-baseline justify-between mb-4">
             <span className="text-sm font-semibold text-[#666]">Tierarztrechnung</span>
-            <span className="text-2xl font-extrabold text-[#1a1a2e] tabular-nums">{euro0(cCost)}</span>
+            <span className="text-2xl font-extrabold text-[#002641] tabular-nums">{euro0(cCost)}</span>
           </div>
 
           {/* Aufschlüsselungs-Balken */}
@@ -221,7 +221,7 @@ export default function CostCalculator() {
           </div>
 
           <div className="mt-5 text-center text-sm text-[#555]">
-            Voller Schutz schon ab <strong className="text-[#1a1a2e]">{euro2(tarif.beitrag)}</strong>/Monat
+            Voller Schutz schon ab <strong className="text-[#002641]">{euro2(tarif.beitrag)}</strong>/Monat
             <span className="text-[#999]"> ({tarif.name})</span>
             {sb && <span className="block text-xs text-[#999] mt-1">Mit Selbstbeteiligung sinkt der Beitrag.</span>}
           </div>
@@ -233,14 +233,14 @@ export default function CostCalculator() {
             href={BARMENIA_KV}
             target="_blank"
             rel="noopener"
-            className="cta-pulse group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#a855f7] px-8 py-4 text-base font-extrabold text-white transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7c3aed] focus-visible:ring-offset-2"
+            className="cta-pulse group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071b2] to-[#0caaff] px-8 py-4 text-base font-extrabold text-white transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071b2] focus-visible:ring-offset-2"
           >
             Jetzt meine Katze absichern
             <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
           </a>
           <div className="mt-3 text-xs text-[#999]">
             In 3 Minuten online –{" "}
-            <a href="#kontakt" className="font-semibold text-[#7c3aed] hover:underline">
+            <a href="#kontakt" className="font-semibold text-[#0071b2] hover:underline">
               oder kostenlos beraten lassen
             </a>
           </div>
