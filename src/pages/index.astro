@@ -827,6 +827,10 @@ const catCards = [
         display: flex;
         gap: 1.2rem;
         align-items: flex-start;
+        min-width: 0;
+      }
+      .ts-main > div {
+        min-width: 0;
       }
       .ts-trophy {
         font-size: 3.4rem;
@@ -849,8 +853,10 @@ const catCards = [
       .ts-h {
         color: #fff;
         text-align: left;
-        font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+        font-size: clamp(1.4rem, 3.2vw, 2.2rem);
         margin-bottom: 0.6rem;
+        overflow-wrap: break-word;
+        hyphens: auto;
       }
       .ts-sub {
         color: rgba(255, 255, 255, 0.85);
@@ -931,6 +937,12 @@ const catCards = [
         }
         .ts-h {
           text-align: left;
+        }
+        .ts-trophy {
+          font-size: 2.6rem;
+        }
+        .ts-main {
+          gap: 0.9rem;
         }
       }
 
