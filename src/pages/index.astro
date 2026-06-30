@@ -1,6 +1,16 @@
 ---
 import "@/styles/globals.css";
 import { Hero } from "@/components/ui/animated-hero";
+import SocialCards from "@/components/ui/card-fan-carousel";
+
+const catCards = [
+  { imgUrl: "https://katzenschutz-miez.de/katz_jung.jpg", alt: "Junge Katze" },
+  { imgUrl: "https://katzenschutz-miez.de/katz_3.jpg", alt: "Freigaenger-Katze" },
+  { imgUrl: "https://katzenschutz-miez.de/katz_hero.jpg", alt: "Weisse Katze" },
+  { imgUrl: "https://katzenschutz-miez.de/katz_luca.jpg", alt: "Luca mit Katze" },
+  { imgUrl: "https://katzenschutz-miez.de/katz_postop.jpg", alt: "Katze nach der OP" },
+  { imgUrl: "https://katzenschutz-miez.de/katz_parallax.jpg", alt: "Katze auf dem Sofa" },
+];
 ---
 
 <!doctype html>
@@ -8,11 +18,19 @@ import { Hero } from "@/components/ui/animated-hero";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Animated Hero – Astro Demo</title>
+    <title>Katzenschutz - Vorschau</title>
   </head>
   <body>
     <main>
       <Hero client:load />
+
+      <section class="bg-[#f8f7fc] py-16 md:py-24 px-4">
+        <div class="max-w-4xl mx-auto text-center mb-4">
+          <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7c3aed] mb-2">Aus der Praxis</p>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-[#1a1a2e]">Echte Fellnasen, echt abgesichert</h2>
+        </div>
+        <SocialCards client:load cards={catCards} />
+      </section>
     </main>
   </body>
 </html>
