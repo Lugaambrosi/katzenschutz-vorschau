@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["hält", "bezahlbar bleibt", "ehrlich ist", "persönlich ist", "fair ist"],
+    () => ["hält, was er verspricht", "bezahlbar bleibt", "persönlich ist", "fair ist"],
     []
   );
 
@@ -41,14 +41,14 @@ function Hero() {
             </Button>
           </div>
           <div className="flex gap-4 flex-col">
-            <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular text-white">
-              <span>Katzenschutz, der</span>
-              <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
+            <h1 className="text-4xl md:text-6xl max-w-3xl tracking-tighter text-center font-regular text-white">
+              <span>Endlich Katzenschutz, der</span>
+              <span className="relative flex w-full items-center justify-center overflow-hidden text-center leading-tight min-h-[2.2em] md:min-h-[1.3em] md:pb-4 md:pt-1">
                 &nbsp;
                 {titles.map((title, index) => (
                   <motion.span
                     key={index}
-                    className="absolute whitespace-nowrap font-semibold text-violet-300"
+                    className="absolute inset-0 flex items-center justify-center px-2 font-semibold text-violet-300"
                     initial={{ opacity: 0, y: "-100" }}
                     transition={{ type: "spring", stiffness: 50 }}
                     animate={
