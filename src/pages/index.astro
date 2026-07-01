@@ -52,11 +52,27 @@ const catCards = [
 
 // Echte Google-Rezensionen (5,0★). Foto: Datei in public/reviews/ ablegen und
 // image auf `${base}reviews/<datei>` setzen; leer = Initialen-Avatar.
+// Aleks und Maren Lang haben bei Google kein Profilfoto -> bleiben Initialen.
 const reviews = [
   {
     name: "Niklas Künne",
     image: "", // reviews/niklas-kuenne.jpg
     text: "Ich bin absolut begeistert von der Beratung und dem Service bei Luca! Als ich auf der Suche nach einer neuen Versicherung war, hat mir Luca kompetent und verständlich alle Optionen erklärt und mich genau zu den für mich passenden Produkten …",
+  },
+  {
+    name: "Aleks",
+    image: "", // kein Google-Foto
+    text: "Luca ist ein motivierter und sehr kompetenter Vertreter. Er beantwortet schnellstmöglich alle Fragen und kümmert sich bis ins Letzte Detail um alles. Er hat für mich die passende Haftpflicht rausgesucht und den Prozess sehr schnell und unkompliziert abgewickelt. Ich fühle mich gut bei ihm aufgehoben und kann ihn wirklich nur herzlichst weiterempfehlen!",
+  },
+  {
+    name: "Nicole Ambos",
+    image: "", // reviews/nicole-ambos.jpg
+    text: "Ich kenne Luca seit vielen Jahren und kann ihn wirklich weiterempfehlen. Was ihn ausmacht, ist die Zuverlässigkeit und dass er sich für die Menschen, mit denen er arbeitet, echt Zeit nimmt. Er erklärt Dinge ruhig und verständlich, hört zu …",
+  },
+  {
+    name: "Maren Lang",
+    image: "", // kein Google-Foto
+    text: "Sehr netter und informativer Termin mit Herrn Ambos. Er hat sich viel Zeit genommen um auf alle Fragen und Themen einzugehen, die mir wichtig waren. Großes Lob und Weiterempfehlung! M. Lang",
   },
   {
     name: "Oleg Rozov",
@@ -69,9 +85,9 @@ const reviews = [
     text: "Herr Ambos hat sich meinem Anliegen angenommen und schnell für eine Lösung gesorgt. Danke dafür!",
   },
   {
-    name: "Nicole Ambos",
-    image: "", // reviews/nicole-ambos.jpg
-    text: "Ich kenne Luca seit vielen Jahren und kann ihn wirklich weiterempfehlen. Was ihn ausmacht, ist die Zuverlässigkeit und dass er sich für die Menschen, mit denen er arbeitet, echt Zeit nimmt. Er erklärt Dinge ruhig und verständlich, hört zu …",
+    name: "Brun Guillaume",
+    image: "", // reviews/brun-guillaume.jpg
+    text: "Nothing but positive to say. Mr Ambos is willing to help in any circumstance and in a prompt manner. He has been of great advice up until now and definitely deserves the praise.",
   },
 ];
 
