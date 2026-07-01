@@ -49,6 +49,32 @@ const catCards = [
     text: "Die Barmenia Premium Plus zählt zu den Top-Tarifen: 100 % Erstattung bis zum 3-fachen GOT-Satz, im Notdienst sogar bis zum 4-fachen – und Operationen ganz ohne Jahreshöchstgrenze.",
   },
 ];
+
+const reviews = [
+  {
+    text: "Ich bin absolut begeistert von der Beratung und dem Service bei Luca! Als ich auf der Suche nach einer neuen Versicherung war, hat mir Luca kompetent und verständlich alle Optionen erklärt …",
+    autor: "Niklas K., Google-Rezension",
+  },
+  {
+    text: "Luca is extremely professional in everything what comes to insurance and helped me and my family a lot! Highly recommend to get in touch and work with him! Much respect!",
+    autor: "Oleg R., Google-Rezension",
+  },
+  {
+    text: "Nothing but positive to say. Mr Ambos is willing to help in any circumstance and in a prompt manner. He has been of great advice up until now and definitely deserves the praise.",
+    autor: "Brun G., Google-Rezension",
+  },
+  {
+    text: "Auch die Bearbeitung meiner Anfragen ging immer schnell und unkompliziert.",
+    autor: "Google-Rezension",
+  },
+  {
+    text: "Großes Lob und Weiterempfehlung!",
+    autor: "Google-Rezension",
+  },
+];
+// Dupliziert für nahtloses Endlos-Scrollen; zweite Reihe umgekehrt.
+const reviewsRow1 = [...reviews, ...reviews];
+const reviewsRow2 = [...[...reviews].reverse(), ...[...reviews].reverse()];
 ---
 
 <!doctype html>
@@ -387,43 +413,28 @@ const catCards = [
             <div class="score">5,0</div>
             <div class="stars">★★★★★</div>
           </div>
-          <div class="review-track">
-            <div class="review-card">
-              <div class="stars">★★★★★</div>
-              <p>
-                „Ich bin absolut begeistert von der Beratung und dem Service bei Luca! Als
-                ich auf der Suche nach einer neuen Versicherung war, hat mir Luca kompetent
-                und verständlich alle Optionen erklärt …"
-              </p>
-              <div class="autor">— Niklas K., Google-Rezension</div>
+          <div class="review-marquee">
+            <div class="review-marquee-row">
+              {
+                reviewsRow1.map((r) => (
+                  <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>„{r.text}"</p>
+                    <div class="autor">— {r.autor}</div>
+                  </div>
+                ))
+              }
             </div>
-            <div class="review-card">
-              <div class="stars">★★★★★</div>
-              <p>
-                „Luca is extremely professional in everything what comes to insurance and
-                helped me and my family a lot! Highly recommend to get in touch and work
-                with him! Much respect!"
-              </p>
-              <div class="autor">— Oleg R., Google-Rezension</div>
-            </div>
-            <div class="review-card">
-              <div class="stars">★★★★★</div>
-              <p>
-                „Nothing but positive to say. Mr Ambos is willing to help in any
-                circumstance and in a prompt manner. He has been of great advice up until
-                now and definitely deserves the praise."
-              </p>
-              <div class="autor">— Brun G., Google-Rezension</div>
-            </div>
-            <div class="review-card">
-              <div class="stars">★★★★★</div>
-              <p>„Auch die Bearbeitung meiner Anfragen ging immer schnell und unkompliziert."</p>
-              <div class="autor">— Google-Rezension</div>
-            </div>
-            <div class="review-card">
-              <div class="stars">★★★★★</div>
-              <p>„Großes Lob und Weiterempfehlung!"</p>
-              <div class="autor">— Google-Rezension</div>
+            <div class="review-marquee-row rev">
+              {
+                reviewsRow2.map((r) => (
+                  <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>„{r.text}"</p>
+                    <div class="autor">— {r.autor}</div>
+                  </div>
+                ))
+              }
             </div>
           </div>
           <div class="review-cta">
@@ -1268,21 +1279,58 @@ const catCards = [
         font-size: 1.1rem;
         letter-spacing: 0.1em;
       }
-      .review-track {
+      .review-marquee {
         display: flex;
+        flex-direction: column;
         gap: 1rem;
-        overflow-x: auto;
-        padding: 0.5rem 0.2rem 1rem;
-        scroll-snap-type: x mandatory;
+        overflow: hidden;
+        padding: 0.5rem 0 1rem;
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+      }
+      .review-marquee-row {
+        display: flex;
+        width: max-content;
+        animation: reviewScroll 60s linear infinite;
+      }
+      .review-marquee-row.rev {
+        animation-direction: reverse;
+      }
+      .review-marquee:hover .review-marquee-row {
+        animation-play-state: paused;
+      }
+      @keyframes reviewScroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .review-marquee {
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .review-marquee-row {
+          animation: none;
+          width: auto;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .review-marquee-row.rev {
+          display: none;
+        }
       }
       .review-card {
         min-width: 280px;
         max-width: 280px;
+        margin-right: 1rem;
         background: #fff;
         border: 1px solid #e3ebf2;
         border-radius: 16px;
         padding: 1.4rem;
-        scroll-snap-align: start;
         box-shadow: 0 3px 12px rgba(26, 26, 46, 0.05);
       }
       .review-card .stars {
