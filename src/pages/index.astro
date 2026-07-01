@@ -52,29 +52,42 @@ const catCards = [
 
 const reviews = [
   {
+    name: "Niklas K.",
     text: "Ich bin absolut begeistert von der Beratung und dem Service bei Luca! Als ich auf der Suche nach einer neuen Versicherung war, hat mir Luca kompetent und verständlich alle Optionen erklärt …",
-    autor: "Niklas K., Google-Rezension",
   },
   {
+    name: "Oleg R.",
     text: "Luca is extremely professional in everything what comes to insurance and helped me and my family a lot! Highly recommend to get in touch and work with him! Much respect!",
-    autor: "Oleg R., Google-Rezension",
   },
   {
+    name: "Brun G.",
     text: "Nothing but positive to say. Mr Ambos is willing to help in any circumstance and in a prompt manner. He has been of great advice up until now and definitely deserves the praise.",
-    autor: "Brun G., Google-Rezension",
   },
   {
+    name: "Google-Nutzer",
     text: "Auch die Bearbeitung meiner Anfragen ging immer schnell und unkompliziert.",
-    autor: "Google-Rezension",
   },
   {
+    name: "Google-Nutzer",
     text: "Großes Lob und Weiterempfehlung!",
-    autor: "Google-Rezension",
   },
 ];
+
+const avatarColors = ["#0071b2", "#16a34a", "#e11d48", "#f59e0b", "#8b5cf6"];
+function reviewInitials(name: string) {
+  if (name.startsWith("Google")) return "G";
+  const p = name.trim().split(/\s+/);
+  return ((p[0]?.[0] ?? "") + (p[1]?.[0] ?? "")).toUpperCase();
+}
+const reviewsFull = reviews.map((r, i) => ({
+  ...r,
+  initials: reviewInitials(r.name),
+  color: avatarColors[i % avatarColors.length],
+  source: "Google-Rezension",
+}));
 // Dupliziert für nahtloses Endlos-Scrollen; zweite Reihe umgekehrt.
-const reviewsRow1 = [...reviews, ...reviews];
-const reviewsRow2 = [...[...reviews].reverse(), ...[...reviews].reverse()];
+const reviewsRow1 = [...reviewsFull, ...reviewsFull];
+const reviewsRow2 = [...[...reviewsFull].reverse(), ...[...reviewsFull].reverse()];
 ---
 
 <!doctype html>
@@ -418,9 +431,18 @@ const reviewsRow2 = [...[...reviews].reverse(), ...[...reviews].reverse()];
               {
                 reviewsRow1.map((r) => (
                   <div class="review-card">
+                    <svg class="review-quote" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M7.17 6C4.9 6 3 7.9 3 10.17c0 2.2 1.72 3.98 3.9 4.08-.13 1.2-.9 2.3-2.06 2.9-.3.16-.42.5-.28.8.14.3.5.44.8.3C10.2 16.9 11 13.6 11 10.6V10c0-2.2-1.8-4-3.83-4zm10 0C15.9 6 14 7.9 14 10.17c0 2.2 1.72 3.98 3.9 4.08-.13 1.2-.9 2.3-2.06 2.9-.3.16-.42.5-.28.8.14.3.5.44.8.3C20.2 16.9 21 13.6 21 10.6V10c0-2.2-1.8-4-3.83-4z" />
+                    </svg>
                     <div class="stars">★★★★★</div>
-                    <p>„{r.text}"</p>
-                    <div class="autor">— {r.autor}</div>
+                    <p>{r.text}</p>
+                    <div class="review-author">
+                      <div class="review-avatar" style={`background:${r.color}`}>{r.initials}</div>
+                      <div>
+                        <div class="review-name">{r.name}</div>
+                        <div class="review-source">{r.source}</div>
+                      </div>
+                    </div>
                   </div>
                 ))
               }
@@ -429,9 +451,18 @@ const reviewsRow2 = [...[...reviews].reverse(), ...[...reviews].reverse()];
               {
                 reviewsRow2.map((r) => (
                   <div class="review-card">
+                    <svg class="review-quote" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M7.17 6C4.9 6 3 7.9 3 10.17c0 2.2 1.72 3.98 3.9 4.08-.13 1.2-.9 2.3-2.06 2.9-.3.16-.42.5-.28.8.14.3.5.44.8.3C10.2 16.9 11 13.6 11 10.6V10c0-2.2-1.8-4-3.83-4zm10 0C15.9 6 14 7.9 14 10.17c0 2.2 1.72 3.98 3.9 4.08-.13 1.2-.9 2.3-2.06 2.9-.3.16-.42.5-.28.8.14.3.5.44.8.3C20.2 16.9 21 13.6 21 10.6V10c0-2.2-1.8-4-3.83-4z" />
+                    </svg>
                     <div class="stars">★★★★★</div>
-                    <p>„{r.text}"</p>
-                    <div class="autor">— {r.autor}</div>
+                    <p>{r.text}</p>
+                    <div class="review-author">
+                      <div class="review-avatar" style={`background:${r.color}`}>{r.initials}</div>
+                      <div>
+                        <div class="review-name">{r.name}</div>
+                        <div class="review-source">{r.source}</div>
+                      </div>
+                    </div>
                   </div>
                 ))
               }
@@ -1324,29 +1355,62 @@ const reviewsRow2 = [...[...reviews].reverse(), ...[...reviews].reverse()];
         }
       }
       .review-card {
-        min-width: 280px;
-        max-width: 280px;
-        margin-right: 1rem;
+        display: flex;
+        flex-direction: column;
+        min-width: 300px;
+        max-width: 300px;
+        min-height: 250px;
+        margin-right: 1.5rem;
         background: #fff;
         border: 1px solid #e3ebf2;
-        border-radius: 16px;
-        padding: 1.4rem;
-        box-shadow: 0 3px 12px rgba(26, 26, 46, 0.05);
+        border-radius: 18px;
+        padding: 1.6rem;
+        box-shadow: 0 6px 20px rgba(26, 26, 46, 0.07);
+      }
+      .review-quote {
+        width: 40px;
+        height: 40px;
+        color: #0071b2;
+        margin-bottom: 0.5rem;
       }
       .review-card .stars {
+        color: #f97316;
         font-size: 0.95rem;
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.7rem;
       }
       .review-card p {
         font-size: 0.86rem;
-        color: #444;
+        color: #555;
         line-height: 1.6;
-        margin-bottom: 0.7rem;
+        margin-bottom: 1.2rem;
       }
-      .review-card .autor {
+      .review-author {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        margin-top: auto;
+      }
+      .review-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.95rem;
+        flex-shrink: 0;
+      }
+      .review-name {
+        font-weight: 700;
+        color: #002641;
+        font-size: 0.9rem;
+        line-height: 1.2;
+      }
+      .review-source {
         font-size: 0.78rem;
         color: #888;
-        font-weight: 600;
       }
       .review-cta {
         text-align: center;
