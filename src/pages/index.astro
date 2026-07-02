@@ -113,14 +113,25 @@ const reviewsFull = reviews.map((r, i) => ({
     <title>KatzenSchutz Miez – Katzenkrankenversicherung mit Luca Ambos</title>
     <meta
       name="description"
-      content="Katzenkrankenversicherung und Katzen-OP-Schutz der BarmeniaGothaer ab 14,84 €/Monat. Persönliche Beratung durch Luca Ambos, Berlin. EisbaumTabelle Testsieger 2026."
+      content="Katzenkrankenversicherung ab 22,74 € und Katzen-OP-Schutz ab 14,84 €/Monat – BarmeniaGothaer. Persönliche Beratung durch Luca Ambos, Berlin. EisbaumTabelle Testsieger 2026."
     />
+    <!-- VORSCHAU: noindex vor dem Live-Gang entfernen! -->
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="KatzenSchutz Miez – Katzenkrankenversicherung mit Luca Ambos" />
+    <meta
+      property="og:description"
+      content="Katzenkrankenversicherung und OP-Schutz der BarmeniaGothaer. Persönliche Beratung von Katzenmensch zu Katzenmensch."
+    />
+    <meta property="og:image" content={`${import.meta.env.SITE}${base}header.jpg`} />
+    <meta property="og:locale" content="de_DE" />
   </head>
   <body>
     <!-- NAV -->
     <nav>
       <a class="nav-brand" href="#hero">KatzenSchutz Miez</a>
-      <div class="nav-links">
+      <div class="nav-links" id="nav-links">
         <a href="#kosten">Tierarztkosten</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#vergleich">Tarife</a>
@@ -129,6 +140,13 @@ const reviewsFull = reviews.map((r, i) => ({
         <a href="#faq">FAQ</a>
       </div>
       <a class="btn-nav" href="#kontakt">Kostenlose Beratung</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-links">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="17" x2="20" y2="17"></line>
+        </svg>
+      </button>
     </nav>
 
     <main>
@@ -189,7 +207,7 @@ const reviewsFull = reviews.map((r, i) => ({
           <p class="ts-pruef">
             Außerdem von <strong>Stiftung Warentest</strong> geprüft (Finanztest
             02/2026): unbegrenzte Versicherungssumme und Erstattung bis zum
-            4-fachen GOT-Satz.
+            3-fachen GOT-Satz – im tierärztlichen Notdienst bis zum 4-fachen.
           </p>
         </div>
       </section>
@@ -201,8 +219,8 @@ const reviewsFull = reviews.map((r, i) => ({
           <h2>Tierarztkosten steigen – dein Risiko auch</h2>
           <p class="section-sub">
             Seit der neuen Gebührenordnung für Tierärzte (GOT) rechnen Praxen bis zum
-            4-fachen Satz ab – im Notdienst sogar verpflichtend erhöht. Eine einzige
-            Behandlung kann vierstellig werden.
+            3-fachen Satz ab – im Notdienst verpflichtend erhöht, bis zum 4-fachen.
+            Eine einzige Behandlung kann vierstellig werden.
           </p>
           <div class="cards-3">
             <div class="card">
@@ -255,7 +273,7 @@ const reviewsFull = reviews.map((r, i) => ({
               >
             </div>
             <p class="kosten-fussnote">
-              Richtwerte je nach Praxis, Region und Gebührensatz (1- bis 4-fach nach GOT).
+              Richtwerte je nach Praxis, Region und Gebührensatz (1- bis 3-fach nach GOT, im Notdienst bis 4-fach).
               Vor- und Nachbehandlungen kommen häufig hinzu.
             </p>
           </div>
@@ -283,7 +301,7 @@ const reviewsFull = reviews.map((r, i) => ({
                 </li>
                 <li>
                   Erstattung bis zum <strong
-                    >4-fachen Satz der Tierarzt-Gebührenordnung (GOT)</strong
+                    >3-fachen GOT-Satz – im Notdienst bis zum 4-fachen</strong
                   >
                 </li>
                 <li>
@@ -319,7 +337,7 @@ const reviewsFull = reviews.map((r, i) => ({
       </section>
 
       <!-- KOSTENRECHNER (interaktiv) -->
-      <CostCalculator client:load />
+      <CostCalculator client:visible />
 
       <!-- VERGLEICH -->
       <section id="vergleich">
@@ -335,14 +353,14 @@ const reviewsFull = reviews.map((r, i) => ({
               <div class="plan-tag">Empfohlen · Premium-Plus-Tarif</div>
               <h3>Katzenkrankenversicherung</h3>
               <div class="preis-sub">Schon ab</div>
-              <div class="preis">14,84 € <span>/Monat</span></div>
-              <div class="preis-sub">inkl. 20 % Selbstbeteiligung (max. 250 €)</div>
+              <div class="preis">71,91 € <span>/Monat</span></div>
+              <div class="preis-sub">junge Katze (2–11 Monate), ohne Selbstbeteiligung</div>
               <ul>
-                <li>Unbegrenzte Leistungssumme</li>
-                <li>Bis zum 4-fachen Tierarzt-Gebührensatz (GOT)</li>
+                <li>Unbegrenzte Leistungssumme bei OPs</li>
+                <li>100 % Erstattung bis zum 3-fachen GOT-Satz, Notdienst 4-fach</li>
                 <li>Keine Wartezeit bei Unfällen</li>
                 <li>Zahnextraktionen &amp; Wurzelbehandlungen</li>
-                <li>Nachbehandlungen bis 30 Tage nach OP</li>
+                <li>Nachbehandlungen bis 120 Tage nach OP</li>
               </ul>
               <a class="btn-primary" href={barmeniaKV} target="_blank" rel="noopener"
                 >Jetzt abschließen</a
@@ -350,11 +368,9 @@ const reviewsFull = reviews.map((r, i) => ({
             </div>
             <div class="plan">
               <h3>Katzen-OP-Schutz</h3>
-              <div class="preis-sub">Günstiger Einstieg</div>
-              <div class="preis" style="font-size:1.45rem;padding:.45rem 0">
-                Operationsschutz
-              </div>
-              <div class="preis-sub">Fokus auf Operationskosten</div>
+              <div class="preis-sub">Schon ab</div>
+              <div class="preis">14,84 € <span>/Monat</span></div>
+              <div class="preis-sub">inkl. 20 % Selbstbeteiligung (max. 250 €)</div>
               <ul>
                 <li>Absicherung von Operationskosten</li>
                 <li>Narkose und stationäre OP-Behandlung</li>
@@ -430,7 +446,7 @@ const reviewsFull = reviews.map((r, i) => ({
           <h2>Echte Fellnasen, echt abgesichert</h2>
           <p class="section-sub">Klick auf eine Karte für die ganze Geschichte.</p>
         </div>
-        <SocialCards client:load cards={catCards} />
+        <SocialCards client:visible cards={catCards} />
       </section>
 
       <!-- REVIEWS -->
@@ -585,7 +601,8 @@ const reviewsFull = reviews.map((r, i) => ({
               <summary>Kann ich den Tierarzt frei wählen?</summary>
               <div class="faq-a">
                 Ja, du hast freie Tierarzt- und Tierklinikwahl in ganz Deutschland.
-                Erstattet wird bis zum 4-fachen Satz der Tierarzt-Gebührenordnung (GOT).
+                Erstattet wird bis zum 3-fachen Satz der Tierarzt-Gebührenordnung
+                (GOT), im tierärztlichen Notdienst bis zum 4-fachen.
               </div>
             </details>
             <details>
@@ -613,6 +630,15 @@ const reviewsFull = reviews.map((r, i) => ({
               type="hidden"
               name="_subject"
               value="Neue Anfrage – KatzenSchutz Miez (Vorschau)"
+            />
+            <!-- Honeypot gegen Spam-Bots: Menschen sehen das Feld nicht -->
+            <input
+              type="text"
+              name="_gotcha"
+              tabindex="-1"
+              autocomplete="off"
+              style="display:none"
+              aria-hidden="true"
             />
             <div class="form-block">
               <div class="form-block-title">Deine Kontaktdaten</div>
@@ -716,6 +742,25 @@ const reviewsFull = reviews.map((r, i) => ({
     >
 
     <!-- Formular-Versand (AJAX) + Weiterleitung zur Danke-Seite -->
+    <script is:inline>
+      // Mobile-Navigation: Burger öffnet/schließt, Klick auf Link schließt.
+      (function () {
+        var burger = document.getElementById("nav-burger");
+        var nav = burger && burger.closest("nav");
+        if (!burger || !nav) return;
+        burger.addEventListener("click", function () {
+          var open = nav.classList.toggle("nav-open");
+          burger.setAttribute("aria-expanded", open ? "true" : "false");
+          burger.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
+        });
+        nav.querySelectorAll(".nav-links a").forEach(function (a) {
+          a.addEventListener("click", function () {
+            nav.classList.remove("nav-open");
+            burger.setAttribute("aria-expanded", "false");
+          });
+        });
+      })();
+    </script>
     <script is:inline define:vars={{ dankeUrl }}>
       (function () {
         var form = document.getElementById("ksm-form");
@@ -806,9 +851,37 @@ const reviewsFull = reviews.map((r, i) => ({
         font-size: 0.85rem;
         white-space: nowrap;
       }
+      .nav-burger {
+        display: none;
+        background: none;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 0.3rem;
+        line-height: 0;
+      }
       @media (max-width: 760px) {
+        .nav-burger {
+          display: block;
+        }
         .nav-links {
           display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          background: rgba(18, 16, 31, 0.98);
+          padding: 0.6rem 1.5rem 1rem;
+          gap: 0;
+        }
+        .nav-links a {
+          display: block;
+          padding: 0.7rem 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        nav.nav-open .nav-links {
+          display: flex;
         }
       }
 

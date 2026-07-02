@@ -8,6 +8,12 @@
   var META_PIXEL_ID = '2082663425935593';
   var KEY = 'ksm_consent_v2';
 
+  // GA4-Property und Meta-Pixel gehören zur LIVE-Seite katzenschutz-miez.de.
+  // Auf der Vorschau (github.io) und lokal NIE laden, sonst verfälschen
+  // Test-Besuche die echten Statistiken und Conversions.
+  var TRACKING_ALLOWED = /(^|\.)katzenschutz-miez\.de$/.test(location.hostname);
+  if (!TRACKING_ALLOWED) { GA_ID = ''; META_PIXEL_ID = ''; }
+
   // Basis-Pfad aus dem eigenen <script src> ableiten (z. B. /katzenschutz-vorschau/),
   // damit Links auch unter dem GitHub-Pages-Unterpfad stimmen.
   var BASE = (function () {
@@ -23,7 +29,7 @@
   })();
 
   function loadGA() {
-    if (window.__ksmGA) return;
+    if (!GA_ID || window.__ksmGA) return;
     window.__ksmGA = true;
     var s = document.createElement('script');
     s.async = true;
