@@ -65,9 +65,8 @@ function Hero() {
 
             <p className="text-lg md:text-xl leading-relaxed tracking-tight text-white/80 max-w-2xl text-center">
               Tierarztkosten steigen, und eine Operation geht schnell ins Geld.
-              Ich helfe dir, deine Katze richtig abzusichern: persönlich,
-              verständlich und ohne Callcenter – von jemandem, der mit Katzen
-              großgeworden ist.
+              Ich helfe dir, deine Katze richtig abzusichern – persönlich und
+              verständlich, von jemandem, der mit Katzen großgeworden ist.
             </p>
           </div>
           <div className="flex flex-row gap-3 flex-wrap justify-center">
