@@ -411,6 +411,66 @@ const reviewsFull = reviews.map((r, i) => ({
         </div>
       </section>
 
+      <!-- VERSICHERER / VERTRAUEN -->
+      <section id="versicherer">
+        <div class="container">
+          <div class="section-label">Starker Partner im Rücken</div>
+          <h2>Ein Versicherer, dem du vertrauen kannst</h2>
+          <p class="section-sub">
+            Hinter deinem Schutz steht die BarmeniaGothaer – einer der größten Versicherer
+            Deutschlands. Und davor stehe ich: dein fester Ansprechpartner.
+          </p>
+          <div class="trust-grid">
+            <div class="trust-stat">
+              <div class="trust-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="3" x2="21" y1="22" y2="22"></line>
+                  <line x1="6" x2="6" y1="18" y2="11"></line>
+                  <line x1="10" x2="10" y1="18" y2="11"></line>
+                  <line x1="14" x2="14" y1="18" y2="11"></line>
+                  <line x1="18" x2="18" y1="18" y2="11"></line>
+                  <polygon points="12 2 20 7 4 7"></polygon>
+                </svg>
+              </div>
+              <div class="trust-zahl">Seit 1820</div>
+              <p>Über 200 Jahre Versicherungsgeschichte – Gothaer seit 1820, Barmenia seit 1904.</p>
+            </div>
+            <div class="trust-stat">
+              <div class="trust-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div class="trust-zahl">8 Mio.+</div>
+              <p>Kundinnen und Kunden vertrauen der BarmeniaGothaer.</p>
+            </div>
+            <div class="trust-stat">
+              <div class="trust-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                  <path d="M4 22h16"></path>
+                  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                </svg>
+              </div>
+              <div class="trust-zahl">Top 10</div>
+              <p>der deutschen Versicherer – rund 8 Mrd. € Beitragseinnahmen.</p>
+            </div>
+          </div>
+          <div class="trust-vvag">
+            <strong>Versicherungsverein auf Gegenseitigkeit:</strong> Die BarmeniaGothaer gehört
+            ihren Mitgliedern – nicht Aktionären. Überschüsse kommen der Versichertengemeinschaft
+            zugute, nicht der Börse. Dein Beitrag arbeitet also für dich und die anderen
+            Versicherten.
+          </div>
+        </div>
+      </section>
+
       <!-- VERGLEICH -->
       <section id="vergleich">
         <div class="container">
@@ -712,13 +772,13 @@ const reviewsFull = reviews.map((r, i) => ({
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         var selector =
           ".section-label, main section h2, .section-sub, .cards-3 .card, .kosten-tabelle, " +
-          ".leistung-block, .plan, .hinweis, .ueber-grid, .review-card, .step, .faq-list details, .ts-grid, .ts-pruef";
+          ".leistung-block, .plan, .hinweis, .ueber-grid, .review-card, .step, .faq-list details, .ts-grid, .ts-pruef, .trust-stat, .trust-vvag";
         var els = document.querySelectorAll(selector);
         els.forEach(function (el) {
           el.classList.add("reveal");
         });
         // Gestaffelte Verzögerung für Karten-Gruppen
-        [".cards-3 .card", ".plan", ".review-card", ".step", ".faq-list details", ".leistung-block"].forEach(
+        [".cards-3 .card", ".plan", ".review-card", ".step", ".faq-list details", ".leistung-block", ".trust-stat"].forEach(
           function (group) {
             document.querySelectorAll(group).forEach(function (el, i) {
               el.style.transitionDelay = Math.min(i * 80, 400) + "ms";
@@ -1308,6 +1368,59 @@ const reviewsFull = reviews.map((r, i) => ({
       /* SZENARIEN-Wrapper (Karten-Karussell) */
       .szenarien {
         background: #f2f7fb;
+      }
+
+      /* VERSICHERER / VERTRAUEN */
+      #versicherer {
+        background: #fff;
+      }
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+        text-align: center;
+      }
+      @media (max-width: 760px) {
+        .trust-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+      .trust-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 0.8rem;
+        border-radius: 50%;
+        background: #eef4fa;
+        color: #0071b2;
+      }
+      .trust-zahl {
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: #002641;
+      }
+      .trust-stat p {
+        font-size: 0.88rem;
+        color: #666;
+        line-height: 1.5;
+        margin-top: 0.3rem;
+        max-width: 260px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .trust-vvag {
+        margin-top: 2.2rem;
+        background: #eef4fa;
+        border-left: 4px solid #0071b2;
+        border-radius: 12px;
+        padding: 1.1rem 1.3rem;
+        font-size: 0.92rem;
+        color: #444;
+        line-height: 1.6;
       }
 
       /* REVIEWS */
