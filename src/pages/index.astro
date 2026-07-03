@@ -646,11 +646,10 @@ const reviewsFull = reviews.map((r, i) => ({
             Füll das Formular aus – ich melde mich zeitnah persönlich bei dir.
           </p>
           <form id="ksm-form" action="https://formspree.io/f/xpqnvjzw" method="POST">
-            <input type="hidden" name="_next" value={dankeUrl} />
             <input
               type="hidden"
               name="_subject"
-              value="Neue Anfrage – KatzenSchutz Miez (Vorschau)"
+              value={isLive ? "Neue Anfrage über katzenschutz-miez.de" : "Testanfrage – Vorschau (nicht live)"}
             />
             <!-- Honeypot gegen Spam-Bots: Menschen sehen das Feld nicht -->
             <input
@@ -666,17 +665,17 @@ const reviewsFull = reviews.map((r, i) => ({
               <div class="form-row">
                 <div>
                   <label for="vorname">Vorname *</label>
-                  <input id="vorname" type="text" name="vorname" required />
+                  <input id="vorname" type="text" name="Vorname" required />
                 </div>
                 <div>
                   <label for="nachname">Nachname *</label>
-                  <input id="nachname" type="text" name="nachname" required />
+                  <input id="nachname" type="text" name="Nachname" required />
                 </div>
               </div>
               <div class="form-row">
                 <div>
                   <label for="telefon">Telefonnummer *</label>
-                  <input id="telefon" type="tel" name="telefon" required />
+                  <input id="telefon" type="tel" name="Telefon" required />
                 </div>
                 <div>
                   <label for="email">E-Mail *</label>
@@ -689,24 +688,24 @@ const reviewsFull = reviews.map((r, i) => ({
               <div class="form-row">
                 <div>
                   <label for="katzenname">Name der Katze *</label>
-                  <input id="katzenname" type="text" name="katzenname" required />
+                  <input id="katzenname" type="text" name="Katze" required />
                 </div>
                 <div>
                   <label for="rasse">Rasse *</label>
-                  <input id="rasse" type="text" name="rasse" required />
+                  <input id="rasse" type="text" name="Rasse" required />
                 </div>
               </div>
               <label for="alter">Alter / Geburtsdatum *</label>
-              <input id="alter" type="text" name="alter" required />
+              <input id="alter" type="text" name="Alter" required />
               <label for="haltung">Freigänger oder Wohnungskatze? *</label>
-              <select id="haltung" name="haltung" required>
+              <select id="haltung" name="Haltung" required>
                 <option value="">Bitte wählen</option>
                 <option>Wohnungskatze</option>
                 <option>Freigänger</option>
                 <option>Beides</option>
               </select>
               <label for="vorerkrankungen">Bekannte Vorerkrankungen? *</label>
-              <select id="vorerkrankungen" name="vorerkrankungen" required>
+              <select id="vorerkrankungen" name="Vorerkrankungen" required>
                 <option value="">Bitte wählen</option>
                 <option>Nein</option>
                 <option>Ja</option>
@@ -715,14 +714,14 @@ const reviewsFull = reviews.map((r, i) => ({
             <div class="form-block">
               <div class="form-block-title">Dein Wunsch</div>
               <label for="interesse">Was interessiert dich? *</label>
-              <select id="interesse" name="interesse" required>
+              <select id="interesse" name="Interesse" required>
                 <option value="">Bitte wählen</option>
                 <option>Katzenkrankenversicherung (Vollschutz)</option>
                 <option>Katzen-OP-Schutz</option>
                 <option>Unsicher – bitte beraten</option>
               </select>
               <label for="nachricht">Weitere Infos / Anmerkungen</label>
-              <textarea id="nachricht" name="nachricht" rows="4"></textarea>
+              <textarea id="nachricht" name="Nachricht" rows="4"></textarea>
             </div>
             <button type="submit">Beratung starten – kostenlos &amp; unverbindlich</button>
             <p class="form-note">
@@ -795,9 +794,16 @@ const reviewsFull = reviews.map((r, i) => ({
             btn.textContent = "Wird gesendet …";
           }
           try {
+            // Leere Felder nicht mitsenden – hält die Benachrichtigungs-Mail schlank.
+            var data = new FormData(form);
+            var keys = [];
+            data.forEach(function (value, key) {
+              if (typeof value === "string" && value.trim() === "") keys.push(key);
+            });
+            keys.forEach(function (key) { data.delete(key); });
             var res = await fetch(form.action, {
               method: "POST",
-              body: new FormData(form),
+              body: data,
               headers: { Accept: "application/json" },
             });
             if (res.ok) {
