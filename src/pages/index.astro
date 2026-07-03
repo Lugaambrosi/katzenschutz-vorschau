@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { Hero } from "@/components/ui/animated-hero";
 import SocialCards from "@/components/ui/card-fan-carousel";
 import CostCalculator from "@/components/ui/cost-calculator";
+import MultiStepForm from "@/components/ui/multi-step-form";
 
 const base = import.meta.env.BASE_URL;
 // base "/" = Live-Build (katzenschutz-miez.de), sonst Vorschau (github.io)
@@ -139,8 +140,8 @@ const reviewsFull = reviews.map((r, i) => ({
       <div class="nav-links" id="nav-links">
         <a href="#kosten">Tierarztkosten</a>
         <a href="#leistungen">Leistungen</a>
-        <a href="#vergleich">Tarife</a>
         <a href="#ueber">Über mich</a>
+        <a href="#vergleich">Tarife</a>
         <a href="#reviews">Bewertungen</a>
         <a href="#faq">FAQ</a>
       </div>
@@ -360,56 +361,6 @@ const reviewsFull = reviews.map((r, i) => ({
       <!-- KOSTENRECHNER (interaktiv) -->
       <CostCalculator client:visible />
 
-      <!-- VERGLEICH -->
-      <section id="vergleich">
-        <div class="container">
-          <div class="section-label">KV oder OP-Schutz?</div>
-          <h2>Welcher Schutz passt zu deiner Katze?</h2>
-          <p class="section-sub">
-            Beide Varianten bieten echten Schutz – die richtige Wahl hängt von deiner
-            Katze, deinem Budget und deinem Sicherheitsbedürfnis ab.
-          </p>
-          <div class="vergleich-grid">
-            <div class="plan empfohlen">
-              <div class="plan-tag">Empfohlen · Premium-Plus-Tarif</div>
-              <h3>Katzenkrankenversicherung</h3>
-              <div class="preis-sub">Schon ab</div>
-              <div class="preis">71,91 € <span>/Monat</span></div>
-              <div class="preis-sub">junge Katze (2–11 Monate), ohne Selbstbeteiligung</div>
-              <ul>
-                <li>Unbegrenzte Leistungssumme bei OPs</li>
-                <li>100 % Erstattung bis zum 3-fachen GOT-Satz, Notdienst 4-fach</li>
-                <li>Keine Wartezeit bei Unfällen</li>
-                <li>Zahnextraktionen &amp; Wurzelbehandlungen</li>
-                <li>Nachbehandlungen bis 120 Tage nach OP</li>
-              </ul>
-              <a class="btn-primary" href={barmeniaKV} target="_blank" rel="noopener"
-                >Jetzt abschließen</a
-              >
-            </div>
-            <div class="plan">
-              <h3>Katzen-OP-Schutz</h3>
-              <div class="preis-sub">Schon ab</div>
-              <div class="preis">14,84 € <span>/Monat</span></div>
-              <div class="preis-sub">inkl. 20 % Selbstbeteiligung (max. 250 €)</div>
-              <ul>
-                <li>Absicherung von Operationskosten</li>
-                <li>Narkose und stationäre OP-Behandlung</li>
-                <li>Günstigerer Monatsbeitrag</li>
-                <li>Sinnvoll für junge, gesunde Katzen</li>
-              </ul>
-              <a class="btn-outline" href={barmeniaOP} target="_blank" rel="noopener"
-                >Beitrag berechnen</a
-              >
-            </div>
-          </div>
-          <div class="hinweis">
-            Bekannte Vorerkrankungen und bereits angeratene Behandlungen müssen beim Antrag
-            vollständig angegeben werden. Bei Unsicherheiten – melde dich bei mir.
-          </div>
-        </div>
-      </section>
-
       <!-- ÜBER MICH -->
       <section id="ueber">
         <div class="container">
@@ -456,6 +407,56 @@ const reviewsFull = reviews.map((r, i) => ({
                 <a class="btn-mail" href="mailto:ambos.luca@gmail.com">E-Mail senden</a>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VERGLEICH -->
+      <section id="vergleich">
+        <div class="container">
+          <div class="section-label">KV oder OP-Schutz?</div>
+          <h2>Welcher Schutz passt zu deiner Katze?</h2>
+          <p class="section-sub">
+            Beide Varianten bieten echten Schutz – die richtige Wahl hängt von deiner
+            Katze, deinem Budget und deinem Sicherheitsbedürfnis ab.
+          </p>
+          <div class="vergleich-grid">
+            <div class="plan empfohlen">
+              <div class="plan-tag">Empfohlen · Premium-Plus-Tarif</div>
+              <h3>Katzenkrankenversicherung</h3>
+              <div class="preis-sub">Schon ab</div>
+              <div class="preis">71,91 € <span>/Monat</span></div>
+              <div class="preis-sub">junge Katze (2–11 Monate), ohne Selbstbeteiligung</div>
+              <ul>
+                <li>Unbegrenzte Leistungssumme bei OPs</li>
+                <li>100 % Erstattung bis zum 3-fachen GOT-Satz, Notdienst 4-fach</li>
+                <li>Keine Wartezeit bei Unfällen</li>
+                <li>Zahnextraktionen &amp; Wurzelbehandlungen</li>
+                <li>Nachbehandlungen bis 120 Tage nach OP</li>
+              </ul>
+              <a class="btn-primary" href={barmeniaKV} target="_blank" rel="noopener"
+                >Jetzt abschließen</a
+              >
+            </div>
+            <div class="plan">
+              <h3>Katzen-OP-Schutz</h3>
+              <div class="preis-sub">Schon ab</div>
+              <div class="preis">14,84 € <span>/Monat</span></div>
+              <div class="preis-sub">inkl. 20 % Selbstbeteiligung (max. 250 €)</div>
+              <ul>
+                <li>Absicherung von Operationskosten</li>
+                <li>Narkose und stationäre OP-Behandlung</li>
+                <li>Günstigerer Monatsbeitrag</li>
+                <li>Sinnvoll für junge, gesunde Katzen</li>
+              </ul>
+              <a class="btn-outline" href={barmeniaOP} target="_blank" rel="noopener"
+                >Beitrag berechnen</a
+              >
+            </div>
+          </div>
+          <div class="hinweis">
+            Bekannte Vorerkrankungen und bereits angeratene Behandlungen müssen beim Antrag
+            vollständig angegeben werden. Bei Unsicherheiten – melde dich bei mir.
           </div>
         </div>
       </section>
@@ -527,7 +528,7 @@ const reviewsFull = reviews.map((r, i) => ({
             <div class="step">
               <div class="num">1</div>
               <h3>Anfrage stellen</h3>
-              <p>Kurzes Formular, 3 Minuten</p>
+              <p>3 Klicks, keine Minute</p>
             </div>
             <div class="step">
               <div class="num">2</div>
@@ -643,91 +644,15 @@ const reviewsFull = reviews.map((r, i) => ({
           <div class="section-label">Katzen-Schutz-Check starten</div>
           <h2>Kostenlose persönliche Beratung</h2>
           <p class="section-sub">
-            Füll das Formular aus – ich melde mich zeitnah persönlich bei dir.
+            Drei schnelle Klicks, dann nur noch Name und Nummer – ich melde mich
+            persönlich bei dir.
           </p>
-          <form id="ksm-form" action="https://formspree.io/f/xpqnvjzw" method="POST">
-            <input
-              type="hidden"
-              name="_subject"
-              value={isLive ? "Neue Anfrage über katzenschutz-miez.de" : "Testanfrage – Vorschau (nicht live)"}
-            />
-            <!-- Honeypot gegen Spam-Bots: Menschen sehen das Feld nicht -->
-            <input
-              type="text"
-              name="_gotcha"
-              tabindex="-1"
-              autocomplete="off"
-              style="display:none"
-              aria-hidden="true"
-            />
-            <div class="form-block">
-              <div class="form-block-title">Deine Kontaktdaten</div>
-              <div class="form-row">
-                <div>
-                  <label for="vorname">Vorname *</label>
-                  <input id="vorname" type="text" name="Vorname" required />
-                </div>
-                <div>
-                  <label for="nachname">Nachname *</label>
-                  <input id="nachname" type="text" name="Nachname" required />
-                </div>
-              </div>
-              <div class="form-row">
-                <div>
-                  <label for="telefon">Telefonnummer *</label>
-                  <input id="telefon" type="tel" name="Telefon" required />
-                </div>
-                <div>
-                  <label for="email">E-Mail *</label>
-                  <input id="email" type="email" name="email" required />
-                </div>
-              </div>
-            </div>
-            <div class="form-block">
-              <div class="form-block-title">Deine Katze</div>
-              <div class="form-row">
-                <div>
-                  <label for="katzenname">Name der Katze *</label>
-                  <input id="katzenname" type="text" name="Katze" required />
-                </div>
-                <div>
-                  <label for="rasse">Rasse *</label>
-                  <input id="rasse" type="text" name="Rasse" required />
-                </div>
-              </div>
-              <label for="alter">Alter / Geburtsdatum *</label>
-              <input id="alter" type="text" name="Alter" required />
-              <label for="haltung">Freigänger oder Wohnungskatze? *</label>
-              <select id="haltung" name="Haltung" required>
-                <option value="">Bitte wählen</option>
-                <option>Wohnungskatze</option>
-                <option>Freigänger</option>
-                <option>Beides</option>
-              </select>
-              <label for="vorerkrankungen">Bekannte Vorerkrankungen? *</label>
-              <select id="vorerkrankungen" name="Vorerkrankungen" required>
-                <option value="">Bitte wählen</option>
-                <option>Nein</option>
-                <option>Ja</option>
-              </select>
-            </div>
-            <div class="form-block">
-              <div class="form-block-title">Dein Wunsch</div>
-              <label for="interesse">Was interessiert dich? *</label>
-              <select id="interesse" name="Interesse" required>
-                <option value="">Bitte wählen</option>
-                <option>Katzenkrankenversicherung (Vollschutz)</option>
-                <option>Katzen-OP-Schutz</option>
-                <option>Unsicher – bitte beraten</option>
-              </select>
-              <label for="nachricht">Weitere Infos / Anmerkungen</label>
-              <textarea id="nachricht" name="Nachricht" rows="4"></textarea>
-            </div>
-            <button type="submit">Beratung starten – kostenlos &amp; unverbindlich</button>
-            <p class="form-note">
-              Deine Daten werden ausschließlich zur Bearbeitung deiner Anfrage verwendet.
-            </p>
-          </form>
+          <MultiStepForm
+            client:visible
+            action="https://formspree.io/f/xpqnvjzw"
+            dankeUrl={dankeUrl}
+            subject={isLive ? "Neue Anfrage über katzenschutz-miez.de" : "Testanfrage – Vorschau (nicht live)"}
+          />
         </div>
       </section>
     </main>
@@ -781,45 +706,38 @@ const reviewsFull = reviews.map((r, i) => ({
         });
       })();
     </script>
-    <script is:inline define:vars={{ dankeUrl }}>
+    <!-- Scroll-Reveals: Sektionsinhalte sanft einblenden -->
+    <script is:inline>
       (function () {
-        var form = document.getElementById("ksm-form");
-        if (!form) return;
-        var btn = form.querySelector("button[type=submit]");
-        var label = btn ? btn.textContent : "";
-        form.addEventListener("submit", async function (e) {
-          e.preventDefault();
-          if (btn) {
-            btn.disabled = true;
-            btn.textContent = "Wird gesendet …";
-          }
-          try {
-            // Leere Felder nicht mitsenden – hält die Benachrichtigungs-Mail schlank.
-            var data = new FormData(form);
-            var keys = [];
-            data.forEach(function (value, key) {
-              if (typeof value === "string" && value.trim() === "") keys.push(key);
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        var selector =
+          ".section-label, main section h2, .section-sub, .cards-3 .card, .kosten-tabelle, " +
+          ".leistung-block, .plan, .hinweis, .ueber-grid, .review-card, .step, .faq-list details, .ts-grid, .ts-pruef";
+        var els = document.querySelectorAll(selector);
+        els.forEach(function (el) {
+          el.classList.add("reveal");
+        });
+        // Gestaffelte Verzögerung für Karten-Gruppen
+        [".cards-3 .card", ".plan", ".review-card", ".step", ".faq-list details", ".leistung-block"].forEach(
+          function (group) {
+            document.querySelectorAll(group).forEach(function (el, i) {
+              el.style.transitionDelay = Math.min(i * 80, 400) + "ms";
             });
-            keys.forEach(function (key) { data.delete(key); });
-            var res = await fetch(form.action, {
-              method: "POST",
-              body: data,
-              headers: { Accept: "application/json" },
-            });
-            if (res.ok) {
-              window.location.href = dankeUrl;
-              return;
-            }
-            throw new Error("bad status");
-          } catch (err) {
-            alert(
-              "Es gab ein Problem beim Senden. Bitte versuch es erneut oder melde dich gern per WhatsApp."
-            );
-            if (btn) {
-              btn.disabled = false;
-              btn.textContent = label;
-            }
           }
+        );
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+        );
+        els.forEach(function (el) {
+          io.observe(el);
         });
       })();
     </script>
@@ -1714,6 +1632,27 @@ const reviewsFull = reviews.map((r, i) => ({
         display: flex;
         align-items: center;
         gap: 0.5rem;
+      }
+    </style>
+    <style is:global>
+      /* Scroll-Reveals (Klassen werden per JS gesetzt) */
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.in-view {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
       }
     </style>
   </body>

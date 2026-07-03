@@ -80,6 +80,7 @@ export default function CostCalculator() {
 
   const cCost = useCountUp(scenario.cost);
   const cEigen = useCountUp(eigenanteil);
+  const cErsparnis = useCountUp(erstattet);
 
   return (
     <section className="bg-white py-16 md:py-24 px-4">
@@ -212,12 +213,20 @@ export default function CostCalculator() {
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-xl bg-[#fdeeee] p-4 text-center">
               <div className="text-xs font-semibold text-[#c0392b] mb-1">Ohne Versicherung</div>
-              <div className="text-2xl md:text-3xl font-extrabold text-[#c0392b] tabular-nums">{euro0(cCost)}</div>
+              <div className="text-2xl md:text-3xl font-extrabold text-[#c0392b] tabular-nums line-through decoration-[3px] decoration-[#c0392b]/70">
+                {euro0(cCost)}
+              </div>
             </div>
             <div className="rounded-xl bg-[#e9f7ee] p-4 text-center">
               <div className="text-xs font-semibold text-[#16a34a] mb-1">Mit Barmenia zahlst du</div>
               <div className="text-2xl md:text-3xl font-extrabold text-[#16a34a] tabular-nums">{euro0(cEigen)}</div>
             </div>
+          </div>
+
+          {/* Ersparnis */}
+          <div className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-[#16a34a] py-3 px-4 text-white shadow-md">
+            <span className="text-sm font-semibold">Deine Ersparnis:</span>
+            <span className="text-xl md:text-2xl font-extrabold tabular-nums">{euro0(cErsparnis)}</span>
           </div>
 
           <div className="mt-5 text-center text-sm text-[#555]">
