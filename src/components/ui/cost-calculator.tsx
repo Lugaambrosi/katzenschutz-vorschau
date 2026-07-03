@@ -213,7 +213,7 @@ export default function CostCalculator() {
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-xl bg-[#fdeeee] p-4 text-center">
               <div className="text-xs font-semibold text-[#c0392b] mb-1">Ohne Versicherung</div>
-              <div className="text-2xl md:text-3xl font-extrabold text-[#c0392b] tabular-nums line-through decoration-[3px] decoration-[#c0392b]/70">
+              <div className="text-2xl md:text-3xl font-extrabold text-[#c0392b] tabular-nums">
                 {euro0(cCost)}
               </div>
             </div>
