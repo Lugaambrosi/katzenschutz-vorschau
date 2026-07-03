@@ -85,6 +85,10 @@ function Hero() {
               </a>
             </Button>
           </div>
+          <p className="text-sm md:text-base text-white/70 text-center -mt-2">
+            OP-Schutz ab <strong className="text-white">14,84 €</strong> · Krankenversicherung ab{" "}
+            <strong className="text-white">22,74 €</strong>/Monat
+          </p>
         </div>
       </div>
     </div>
