@@ -113,7 +113,10 @@ export default function CostCalculator() {
             value={sIdx}
             onChange={(e) => setSIdx(Number(e.target.value))}
             aria-label="Szenario wählen"
-            className="w-full accent-[#0071b2] cursor-pointer h-2"
+            className="ks-range w-full cursor-pointer"
+            style={{
+              background: `linear-gradient(to right, #0071b2 ${(sIdx / (SCENARIOS.length - 1)) * 100}%, #e3ebf2 ${(sIdx / (SCENARIOS.length - 1)) * 100}%)`,
+            }}
           />
           <div className="flex justify-between mt-2">
             {SCENARIOS.map((s, i) => (
@@ -122,7 +125,11 @@ export default function CostCalculator() {
                 onClick={() => setSIdx(i)}
                 aria-label={s.name}
                 title={s.name}
-                className={`text-lg leading-none transition-transform ${i === sIdx ? "scale-125" : "opacity-40 hover:opacity-80"}`}
+                className={`text-xl leading-none transition-all ${
+                  i === sIdx
+                    ? "scale-125 drop-shadow"
+                    : "grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:scale-110"
+                }`}
               >
                 {s.emoji}
               </button>
@@ -223,10 +230,15 @@ export default function CostCalculator() {
             </div>
           </div>
 
-          {/* Ersparnis */}
-          <div className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-[#16a34a] py-3 px-4 text-white shadow-md">
-            <span className="text-sm font-semibold">Deine Ersparnis:</span>
-            <span className="text-xl md:text-2xl font-extrabold tabular-nums">{euro0(cErsparnis)}</span>
+          {/* Ersparnis + Beitrags-Kontext: macht die Zahl greifbar */}
+          <div className="mt-4 rounded-xl bg-[#16a34a] py-3 px-4 text-center text-white shadow-md">
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-sm font-semibold">Deine Ersparnis:</span>
+              <span className="text-xl md:text-2xl font-extrabold tabular-nums">{euro0(cErsparnis)}</span>
+            </div>
+            <div className="text-xs font-medium text-white/85 mt-0.5">
+              das sind rund {Math.max(1, Math.round(erstattet / tarif.beitrag))} Monatsbeiträge ({tarif.name})
+            </div>
           </div>
 
           <div className="mt-5 text-center text-sm text-[#555]">

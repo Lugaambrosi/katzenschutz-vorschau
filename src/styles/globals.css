@@ -86,6 +86,48 @@
   .cta-pulse { animation: none; }
 }
 
+/* ---- Kostenrechner: schlanker Szenario-Slider ---- */
+.ks-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: #e3ebf2;
+  outline: none;
+}
+.ks-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0071b2;
+  border: 3px solid #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.ks-range::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+.ks-range::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0071b2;
+  border: 3px solid #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.ks-range::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: transparent;
+}
+.ks-range:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0, 113, 178, 0.35);
+}
+
 /* ---- Card Fan Carousel ---- */
 .fan-layout {
   height: 25rem;
