@@ -305,65 +305,6 @@ const reviewsFull = reviews.map((r, i) => ({
         </div>
       </section>
 
-      <!-- LEISTUNGEN -->
-      <section id="leistungen">
-        <div class="container">
-          <div class="section-label">Das steckt drin</div>
-          <h2>Starke Leistungen für deine Katze</h2>
-          <p class="section-sub">
-            Die Barmenia Premium Plus steht bei der <a
-              href="https://www.eisbaumtabelle.de/katze"
-              target="_blank"
-              rel="noopener">EisbaumTabelle 2026</a
-            > mit 98 % Ø-Erstattung auf Platz 1 – und das bekommst du dazu.
-          </p>
-          <div class="leistungen-grid">
-            <div class="leistung-block">
-              <h3>Versicherte Leistungen</h3>
-              <ul>
-                <li>
-                  <strong>Unbegrenzte Leistungssumme</strong> – keine Jahres-Deckelung bei OPs
-                </li>
-                <li>
-                  Erstattung bis zum <strong
-                    >3-fachen GOT-Satz – im Notdienst bis zum 4-fachen</strong
-                  >
-                </li>
-                <li>
-                  <strong>Zahnerkrankungen</strong> inkl. FORL, Extraktionen &amp; Wurzelbehandlungen
-                </li>
-                <li><strong>Rassespezifische Erkrankungen</strong> – auch mehrfach</li>
-                <li>Diagnostik wie <strong>MRT, CT, Röntgen</strong> vor der OP</li>
-                <li><strong>Nachbehandlungen bis 120 Tage</strong> nach der OP (Premium Plus, sonst 30 Tage)</li>
-                <li>Keine Wartezeit bei <strong>Unfällen &amp; Vergiftungen</strong></li>
-              </ul>
-            </div>
-            <div class="leistung-block hell">
-              <h3>Dein Plus bei mir</h3>
-              <ul>
-                <li>
-                  <strong>Persönlicher Ansprechpartner</strong> – vor und nach dem Abschluss
-                </li>
-                <li>
-                  <strong>Freie Tierarzt- und Klinikwahl</strong> in ganz Deutschland
-                </li>
-                <li>
-                  <strong>Weltweiter Schutz</strong> bei Auslandsaufenthalten bis 12 Monate
-                </li>
-                <li>
-                  Ehrliche Einschätzung: <strong>KV oder OP-Schutz</strong> – was wirklich passt
-                </li>
-                <li>Hilfe bei <strong>Erstattungen &amp; Rechnungen</strong> im Leistungsfall</li>
-                <li>Erreichbar per <strong>WhatsApp, Telefon oder E-Mail</strong></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- KOSTENRECHNER (interaktiv) -->
-      <CostCalculator client:visible />
-
       <!-- MUSTERRECHNUNG (So sieht der Ernstfall auf Papier aus) -->
       <section id="rechnung">
         <div class="container">
@@ -443,6 +384,66 @@ const reviewsFull = reviews.map((r, i) => ({
           </div>
         </div>
       </section>
+
+      <!-- LEISTUNGEN -->
+      <section id="leistungen">
+        <div class="container">
+          <div class="section-label">Das steckt drin</div>
+          <h2>Starke Leistungen für deine Katze</h2>
+          <p class="section-sub">
+            Die Barmenia Premium Plus steht bei der <a
+              href="https://www.eisbaumtabelle.de/katze"
+              target="_blank"
+              rel="noopener">EisbaumTabelle 2026</a
+            > mit 98 % Ø-Erstattung auf Platz 1 – und das bekommst du dazu.
+          </p>
+          <div class="leistungen-grid">
+            <div class="leistung-block">
+              <h3>Versicherte Leistungen</h3>
+              <ul>
+                <li>
+                  <strong>Unbegrenzte Leistungssumme</strong> – keine Jahres-Deckelung bei OPs
+                </li>
+                <li>
+                  Erstattung bis zum <strong
+                    >3-fachen GOT-Satz – im Notdienst bis zum 4-fachen</strong
+                  >
+                </li>
+                <li>
+                  <strong>Zahnerkrankungen</strong> inkl. FORL, Extraktionen &amp; Wurzelbehandlungen
+                </li>
+                <li><strong>Rassespezifische Erkrankungen</strong> – auch mehrfach</li>
+                <li>Diagnostik wie <strong>MRT, CT, Röntgen</strong> vor der OP</li>
+                <li><strong>Nachbehandlungen bis 120 Tage</strong> nach der OP (Premium Plus, sonst 30 Tage)</li>
+                <li>Keine Wartezeit bei <strong>Unfällen &amp; Vergiftungen</strong></li>
+              </ul>
+            </div>
+            <div class="leistung-block hell">
+              <h3>Dein Plus bei mir</h3>
+              <ul>
+                <li>
+                  <strong>Persönlicher Ansprechpartner</strong> – vor und nach dem Abschluss
+                </li>
+                <li>
+                  <strong>Freie Tierarzt- und Klinikwahl</strong> in ganz Deutschland
+                </li>
+                <li>
+                  <strong>Weltweiter Schutz</strong> bei Auslandsaufenthalten bis 12 Monate
+                </li>
+                <li>
+                  Ehrliche Einschätzung: <strong>KV oder OP-Schutz</strong> – was wirklich passt
+                </li>
+                <li>Hilfe bei <strong>Erstattungen &amp; Rechnungen</strong> im Leistungsfall</li>
+                <li>Erreichbar per <strong>WhatsApp, Telefon oder E-Mail</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- KOSTENRECHNER (interaktiv) -->
+      <CostCalculator client:visible />
+
 
       <!-- ÜBER MICH -->
       <section id="ueber">
@@ -1426,10 +1427,10 @@ const reviewsFull = reviews.map((r, i) => ({
       }
       .rechnung-grid {
         display: grid;
-        grid-template-columns: 1fr minmax(300px, 460px) 1fr;
+        grid-template-columns: 1fr minmax(320px, 580px) 1fr;
         gap: 1.2rem;
         align-items: center;
-        max-width: 980px;
+        max-width: 1120px;
         margin: 0 auto;
       }
       .paper {
